@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { MenuService } from '@core';
+import {Component, OnInit} from '@angular/core';
+import {MenuService} from '@core';
 
 @Component({
   selector: 'app-topmenu',
@@ -8,9 +8,11 @@ import { MenuService } from '@core';
 export class TopmenuComponent implements OnInit {
   menus = this._menu.getAll();
 
-  constructor(public _menu: MenuService) {}
+  constructor(public _menu: MenuService) {
+  }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 
   // Delete empty values and rebuild route
   buildRoute(routes: string[]) {

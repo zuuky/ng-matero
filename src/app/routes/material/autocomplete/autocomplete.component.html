@@ -6,10 +6,10 @@
     <p>Select your favorite state</p>
     <mat-form-field>
       <mat-label>Search for a state</mat-label>
-      <input matInput
-             [matAutocomplete]="autocomplete"
+      <input (ngModelChange)="filteredStates = filter(value)"
              [(ngModel)]="value"
-             (ngModelChange)="filteredStates = filter(value)">
+             [matAutocomplete]="autocomplete"
+             matInput>
       <mat-autocomplete #autocomplete="matAutocomplete">
         <mat-option *ngFor="let state of filteredStates" [value]="state.name">
           <span>{{ state.name }}</span>

@@ -3,20 +3,20 @@
 <mat-card>
   <mat-form-field>
     List length:
-    <input matInput [(ngModel)]="length">
+    <input [(ngModel)]="length" matInput>
   </mat-form-field>
 
   <mat-form-field>
     Page size:
-    <input matInput [(ngModel)]="pageSize">
+    <input [(ngModel)]="pageSize" matInput>
   </mat-form-field>
   <mat-form-field>
     Page size options:
-    <input matInput [ngModel]="pageSizeOptions" (ngModelChange)="setPageSizeOptions($event)">
+    <input (ngModelChange)="setPageSizeOptions($event)" [ngModel]="pageSizeOptions" matInput>
   </mat-form-field>
 
-  <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"
-                 (page)="pageEvent = $event">
+  <mat-paginator (page)="pageEvent = $event" [length]="length" [pageSizeOptions]="pageSizeOptions"
+                 [pageSize]="pageSize">
   </mat-paginator>
 
   <div *ngIf="pageEvent">

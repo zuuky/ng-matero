@@ -21,10 +21,10 @@
   <section>
     <h2>Nested checklist</h2>
     <div *ngFor="let task of tasks">
-      <mat-checkbox [(ngModel)]="task.completed"
+      <mat-checkbox (change)="setAllCompleted(task.subtasks, $event.checked)"
+                    [(ngModel)]="task.completed"
                     [checked]="allComplete(task)"
-                    [indeterminate]="someComplete(task.subtasks)"
-                    (change)="setAllCompleted(task.subtasks, $event.checked)">
+                    [indeterminate]="someComplete(task.subtasks)">
         {{task.name}}
       </mat-checkbox>
       <div class="demo-sub-list">

@@ -1,10 +1,10 @@
-<mat-toolbar color="primary" role="header" aria-label="Dual sidenav app">
-  <button mat-icon-button aria-label="Navigation menu" (click)="startSnav.toggle()">
+<mat-toolbar aria-label="Dual sidenav app" color="primary" role="header">
+  <button (click)="startSnav.toggle()" aria-label="Navigation menu" mat-icon-button>
     <mat-icon aria-hidden="true">menu</mat-icon>
   </button>
   <h1 class="demo-sidenav-app-name">Dual Sidenav App</h1>
-  <span class="demo-sidenav-spacer" aria-hidden="true"></span>
-  <button mat-icon-button aria-label="Playlist menu" (click)="endSnav.toggle()">
+  <span aria-hidden="true" class="demo-sidenav-spacer"></span>
+  <button (click)="endSnav.toggle()" aria-label="Playlist menu" mat-icon-button>
     <mat-icon aria-hidden="true">playlist_play</mat-icon>
   </button>
 </mat-toolbar>
@@ -20,23 +20,23 @@
   </mat-sidenav>
 
   <mat-sidenav-content role="region">
-    <button mat-raised-button aria-label="Close dual sidenav example" color="primary"
-            class="demo-sidenav-close" routerLink="..">
+    <button aria-label="Close dual sidenav example" class="demo-sidenav-close" color="primary"
+            mat-raised-button routerLink="..">
       Close example
     </button>
   </mat-sidenav-content>
 
-  <mat-sidenav #endSnav mode="side" position="end" class="demo-sidenav-playlist" role="region"
-               (open)="playlist1.focus()">
+  <mat-sidenav #endSnav (open)="playlist1.focus()" class="demo-sidenav-playlist" mode="side" position="end"
+               role="region">
     <h2 class="demo-sidenav-playlist-header">Playlists</h2>
-    <button #playlist1 mat-button aria-label="Thumbs up playlist" (click)="play('Thumbs up')">
+    <button #playlist1 (click)="play('Thumbs up')" aria-label="Thumbs up playlist" mat-button>
       Thumbs up
     </button>
-    <button mat-button aria-label="Last added playlist" (click)="play('Last added')">
+    <button (click)="play('Last added')" aria-label="Last added playlist" mat-button>
       Last added
     </button>
-    <button mat-button aria-label="Free and purchased playlist"
-            (click)="play('Free and purchased')">
+    <button (click)="play('Free and purchased')" aria-label="Free and purchased playlist"
+            mat-button>
       Free and purchased
     </button>
   </mat-sidenav>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component} from '@angular/core';
 
 export interface Task {
   name: string;
@@ -17,18 +17,18 @@ export class CheckboxComponent {
       name: 'Reminders',
       completed: false,
       subtasks: [
-        { name: 'Cook Dinner', completed: false },
-        { name: 'Read the Material Design Spec', completed: false },
-        { name: 'Upgrade Application to Angular', completed: false },
+        {name: 'Cook Dinner', completed: false},
+        {name: 'Read the Material Design Spec', completed: false},
+        {name: 'Upgrade Application to Angular', completed: false},
       ],
     },
     {
       name: 'Groceries',
       completed: false,
       subtasks: [
-        { name: 'Organic Eggs', completed: false },
-        { name: 'Protein Powder', completed: false },
-        { name: 'Almond Meal Flour', completed: false },
+        {name: 'Organic Eggs', completed: false},
+        {name: 'Protein Powder', completed: false},
+        {name: 'Almond Meal Flour', completed: false},
       ],
     },
   ];

@@ -1,23 +1,14 @@
-import {
-  Component,
-  OnInit,
-  OnDestroy,
-  ViewChild,
-  HostBinding,
-  ElementRef,
-  Inject,
-  Optional,
-} from '@angular/core';
-import { DOCUMENT } from '@angular/common';
-import { NavigationEnd, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
-import { BreakpointObserver } from '@angular/cdk/layout';
-import { OverlayContainer } from '@angular/cdk/overlay';
-import { Directionality } from '@angular/cdk/bidi';
-import { MatSidenav, MatSidenavContent } from '@angular/material/sidenav';
+import {Component, ElementRef, HostBinding, Inject, OnDestroy, OnInit, Optional, ViewChild,} from '@angular/core';
+import {DOCUMENT} from '@angular/common';
+import {NavigationEnd, Router} from '@angular/router';
+import {Subscription} from 'rxjs';
+import {BreakpointObserver} from '@angular/cdk/layout';
+import {OverlayContainer} from '@angular/cdk/overlay';
+import {Directionality} from '@angular/cdk/bidi';
+import {MatSidenav, MatSidenavContent} from '@angular/material/sidenav';
 
-import { SettingsService, AppSettings } from '@core';
-import { AppDirectionality } from '@shared';
+import {AppSettings, SettingsService} from '@core';
+import {AppDirectionality} from '@shared';
 
 const MOBILE_MEDIAQUERY = 'screen and (max-width: 599px)';
 const TABLET_MEDIAQUERY = 'screen and (min-width: 600px) and (max-width: 959px)';
@@ -28,35 +19,16 @@ const MONITOR_MEDIAQUERY = 'screen and (min-width: 960px)';
   templateUrl: './admin-layout.component.html',
 })
 export class AdminLayoutComponent implements OnInit, OnDestroy {
-  @ViewChild('sidenav', { static: true }) sidenav: MatSidenav;
-  @ViewChild('content', { static: true }) content: MatSidenavContent;
+  @ViewChild('sidenav', {static: true}) sidenav: MatSidenav;
+  @ViewChild('content', {static: true}) content: MatSidenavContent;
 
   options = this._settings.getOptions();
 
   private _layoutChangesSubscription: Subscription;
 
   private _isMobileScreen = false;
-  get isOver(): boolean {
-    return this._isMobileScreen;
-  }
-
   private contentWidthFix = true;
-  @HostBinding('class.matero-content-width-fix') get isContentWidthFix() {
-    return (
-      this.contentWidthFix &&
-      this.options.navPos === 'side' &&
-      this.options.sidenavOpened &&
-      !this.isOver
-    );
-  }
-
   private collapsedWidthFix = true;
-  @HostBinding('class.matero-sidenav-collapsed-fix') get isCollapsedWidthFix() {
-    return (
-      this.collapsedWidthFix &&
-      (this.options.navPos === 'top' || (this.options.sidenavOpened && this.isOver))
-    );
-  }
 
   constructor(
     private _router: Router,
@@ -84,9 +56,29 @@ export class AdminLayoutComponent implements OnInit, OnDestroy {
     // TODO: Scroll top to container
     this._router.events.subscribe(evt => {
       if (evt instanceof NavigationEnd) {
-        this.content.scrollTo({ top: 0 });
+        this.content.scrollTo({top: 0});
       }
     });
+  }
+
+  get isOver(): boolean {
+    return this._isMobileScreen;
+  }
+
+  @HostBinding('class.matero-content-width-fix') get isContentWidthFix() {
+    return (
+      this.contentWidthFix &&
+      this.options.navPos === 'side' &&
+      this.options.sidenavOpened &&
+      !this.isOver
+    );
+  }
+
+  @HostBinding('class.matero-sidenav-collapsed-fix') get isCollapsedWidthFix() {
+    return (
+      this.collapsedWidthFix &&
+      (this.options.navPos === 'top' || (this.options.sidenavOpened && this.isOver))
+    );
   }
 
   ngOnInit() {

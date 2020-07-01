@@ -3,26 +3,26 @@
 <mat-card>
   <section>
     <h2>Survey progress (Determinate progress bar)</h2>
-    <mat-progress-bar mode="determinate" [value]="surveyProgress" color="primary"
-                      aria-label="Survey progress">
+    <mat-progress-bar [value]="surveyProgress" aria-label="Survey progress" color="primary"
+                      mode="determinate">
     </mat-progress-bar>
   </section>
 
   <section>
     <h2>Video progress (Progress bar with buffer) </h2>
-    <mat-progress-bar [value]="videoPlayValue" [bufferValue]="videoBufferValue" mode="buffer"
-                      color="primary" aria-label="Video progress">
+    <mat-progress-bar [bufferValue]="videoBufferValue" [value]="videoPlayValue" aria-label="Video progress"
+                      color="primary" mode="buffer">
     </mat-progress-bar>
   </section>
 
   <section>
     <h2>Loading content progress (Indeterminate progress bar)</h2>
-    <mat-progress-bar mode="indeterminate" color="warn" aria-label="Loading content">
+    <mat-progress-bar aria-label="Loading content" color="warn" mode="indeterminate">
     </mat-progress-bar>
   </section>
 
   <section>
     <h2>Search progress (Query progress bar)</h2>
-    <mat-progress-bar mode="query" color="accent" aria-label="Searching"></mat-progress-bar>
+    <mat-progress-bar aria-label="Searching" color="accent" mode="query"></mat-progress-bar>
   </section>
 </mat-card>

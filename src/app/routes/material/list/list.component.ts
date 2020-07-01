@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-list',
@@ -29,16 +29,16 @@ export class ListComponent {
     },
   ];
 
-  links = [{ name: 'Inbox' }, { name: 'Outbox' }, { name: 'Spam' }, { name: 'Trash' }];
+  links = [{name: 'Inbox'}, {name: 'Outbox'}, {name: 'Spam'}, {name: 'Trash'}];
 
   folders = [
-    { name: 'Imported', updated: 'Miles' },
-    { name: 'Important', updated: 'Tina' },
-    { name: 'Unread', updated: 'Jeremy' },
+    {name: 'Imported', updated: 'Miles'},
+    {name: 'Important', updated: 'Tina'},
+    {name: 'Unread', updated: 'Jeremy'},
   ];
 
   notes = [
-    { name: 'Update screenshots', updated: 'Kara' },
-    { name: 'Install new application', updated: 'Andrew' },
+    {name: 'Update screenshots', updated: 'Kara'},
+    {name: 'Install new application', updated: 'Andrew'},
   ];
 }

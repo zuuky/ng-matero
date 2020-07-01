@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 
 const USD_TO_JPY = 110.29;
 
@@ -32,6 +32,7 @@ export class InputComponent {
   get jpy() {
     return this.usd ? this.usd * USD_TO_JPY : this.usd;
   }
+
   set jpy(value) {
     this.usd = value ? value / USD_TO_JPY : value;
   }

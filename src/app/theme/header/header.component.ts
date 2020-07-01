@@ -1,11 +1,4 @@
-import {
-  Component,
-  OnInit,
-  Output,
-  EventEmitter,
-  Input,
-  ChangeDetectionStrategy,
-} from '@angular/core';
+import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output,} from '@angular/core';
 import * as screenfull from 'screenfull';
 
 @Component({
@@ -20,13 +13,15 @@ export class HeaderComponent implements OnInit {
   @Output() toggleSidenav = new EventEmitter<void>();
   @Output() toggleSidenavNotice = new EventEmitter<void>();
 
+  constructor() {
+  }
+
   private get screenfull(): screenfull.Screenfull {
     return screenfull as screenfull.Screenfull;
   }
 
-  constructor() {}
-
-  ngOnInit() {}
+  ngOnInit() {
+  }
 
   // TODO:
   toggleFullscreen() {

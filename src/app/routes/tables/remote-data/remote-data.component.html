@@ -2,7 +2,7 @@
 
 <form>
   <mat-form-field class="m-r-8">
-    <input matInput [(ngModel)]="query.q" name="q" placeholder="Query String">
+    <input [(ngModel)]="query.q" matInput name="q" placeholder="Query String">
   </mat-form-field>
 
   <mat-form-field class="m-r-8">
@@ -22,16 +22,16 @@
     </mat-select>
   </mat-form-field>
 
-  <button class="m-r-8" mat-raised-button color="primary" (click)="search()">Search</button>
+  <button (click)="search()" class="m-r-8" color="primary" mat-raised-button>Search</button>
 </form>
 
-<mtx-grid [data]="list"
+<mtx-grid (page)="getNextPage($event)"
           [columns]="columns"
+          [data]="list"
           [length]="total"
           [loading]="isLoading"
-          [pageOnFront]="false"
           [pageIndex]="query.page"
-          [pageSize]="query.per_page"
+          [pageOnFront]="false"
           [pageSizeOptions]="[5,10,20]"
-          (page)="getNextPage($event)">
+          [pageSize]="query.per_page">
 </mtx-grid>

@@ -1,23 +1,23 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {RouterModule} from '@angular/router';
 
-import { MaterialModule } from '../material.module';
-import { MaterialExtensionsModule } from '@ng-matero/extensions';
-import { FlexLayoutModule } from '@angular/flex-layout';
-import { NgProgressModule } from 'ngx-progressbar';
-import { NgProgressHttpModule } from 'ngx-progressbar/http';
-import { NgProgressRouterModule } from 'ngx-progressbar/router';
-import { NgSelectModule } from '@ng-select/ng-select';
-import { FormlyModule } from '@ngx-formly/core';
-import { FormlyMaterialModule } from '@ngx-formly/material';
-import { ToastrModule } from 'ngx-toastr';
-import { TranslateModule } from '@ngx-translate/core';
+import {MaterialModule} from '../material.module';
+import {MaterialExtensionsModule} from '@ng-matero/extensions';
+import {FlexLayoutModule} from '@angular/flex-layout';
+import {NgProgressModule} from 'ngx-progressbar';
+import {NgProgressHttpModule} from 'ngx-progressbar/http';
+import {NgProgressRouterModule} from 'ngx-progressbar/router';
+import {NgSelectModule} from '@ng-select/ng-select';
+import {FormlyModule} from '@ngx-formly/core';
+import {FormlyMaterialModule} from '@ngx-formly/material';
+import {ToastrModule} from 'ngx-toastr';
+import {TranslateModule} from '@ngx-translate/core';
 
-import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
-import { PageHeaderComponent } from './components/page-header/page-header.component';
-import { ErrorCodeComponent } from './components/error-code/error-code.component';
+import {BreadcrumbComponent} from './components/breadcrumb/breadcrumb.component';
+import {PageHeaderComponent} from './components/page-header/page-header.component';
+import {ErrorCodeComponent} from './components/error-code/error-code.component';
 
 const THIRD_MODULES = [
   MaterialModule,
@@ -52,4 +52,5 @@ const PIPES = [];
   ],
   entryComponents: COMPONENTS_DYNAMIC,
 })
-export class SharedModule {}
+export class SharedModule {
+}

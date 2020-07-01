@@ -9,12 +9,12 @@
     "no-empty-source": null,
     "number-leading-zero": "never",
     "selector-pseudo-element-no-unknown": [
-        true,
-        {
-            "ignorePseudoElements": [
-                "ng-deep"
-            ]
-        }
+      true,
+      {
+        "ignorePseudoElements": [
+          "ng-deep"
+        ]
+      }
     ],
     "selector-type-no-unknown": null,
     "value-keyword-case": null

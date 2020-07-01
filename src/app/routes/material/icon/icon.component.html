@@ -11,7 +11,7 @@
   <section>
     <h2>Delete icon button </h2>
     <p>Showing a button with interactive icon which can perform an action</p>
-    <button mat-icon-button aria-label="Delete" (click)="deleteIcon()">
+    <button (click)="deleteIcon()" aria-label="Delete" mat-icon-button>
       <mat-icon color="accent">delete</mat-icon>
     </button>
   </section>
@@ -19,7 +19,7 @@
   <section>
     <h2>Home link </h2>
     <p>Showing a link with interactive icon</p>
-    <a mat-icon-button aria-label="Home" href="http://www.google.com">
+    <a aria-label="Home" href="http://www.google.com" mat-icon-button>
       <mat-icon color="warn">home</mat-icon>
     </a>
   </section>

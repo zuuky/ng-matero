@@ -1,15 +1,18 @@
-import { Directive, HostBinding, Inject, Input, OnInit, OnDestroy } from '@angular/core';
+import {Directive, HostBinding, Inject, Input, OnDestroy, OnInit} from '@angular/core';
 
-import { AccordionDirective } from './accordion.directive';
+import {AccordionDirective} from './accordion.directive';
 
 @Directive({
   selector: '[navAccordionLink]',
 })
 export class AccordionLinkDirective implements OnInit, OnDestroy {
+  @Input() public group: any;
   protected OPEN = false;
   protected nav: AccordionDirective;
 
-  @Input() public group: any;
+  constructor(@Inject(AccordionDirective) nav: AccordionDirective) {
+    this.nav = nav;
+  }
 
   @HostBinding('class.open')
   @Input()
@@ -22,10 +25,6 @@ export class AccordionLinkDirective implements OnInit, OnDestroy {
     if (value) {
       this.nav.closeOtherLinks(this);
     }
-  }
-
-  constructor(@Inject(AccordionDirective) nav: AccordionDirective) {
-    this.nav = nav;
   }
 
   ngOnInit(): any {

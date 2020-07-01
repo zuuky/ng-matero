@@ -1,34 +1,36 @@
-<page-header class="p-t-32 p-b-48 m-b--24 bg-gray-900"
+<page-header [showBreadCrumb]="false"
              [title]="'Personal Profile'"
-             [showBreadCrumb]="false">
+             class="p-t-32 p-b-48 m-b--24 bg-gray-900">
 </page-header>
 
-<div fxLayout="row wrap" class="matero-row">
-  <div class="matero-col" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-sm="33.33" fxFlex.gt-md="25">
+<div class="matero-row" fxLayout="row wrap">
+  <div class="matero-col" fxFlex="100" fxFlex.gt-md="25" fxFlex.gt-sm="33.33" fxFlex.gt-xs="50">
     <mat-card>
       <div class="text-center">
-        <img class="m-b-8 r-full" src="assets/images/avatar.jpg" alt="" width="80">
+        <img alt="" class="m-b-8 r-full" src="assets/images/avatar.jpg" width="80">
         <h2 class="m-t-0 m-b-8 f-w-400">Zongbin</h2>
         <p class="m-t-0 m-b-8">FE Developer, UE designer</p>
         <p class="m-t-0 text-grey-500">I like reading, writing and drawing.</p>
 
-        <a mat-raised-button color="primary" href="https://github.com/nzbin" target="_blank">Follow
+        <a color="primary" href="https://github.com/nzbin" mat-raised-button target="_blank">Follow
           Me</a>
-        <button mat-raised-button color="accent" class="m-l-8">Contact Me</button>
+        <button class="m-l-8" color="accent" mat-raised-button>Contact Me</button>
       </div>
       <mat-nav-list class="m-x--16 m-b--16 m-t-16">
         <mat-divider inset></mat-divider>
         <a mat-list-item routerLink="/profile/overview">
-          <mat-icon class="icon-18 m-r-8">account_circle</mat-icon> Overview
+          <mat-icon class="icon-18 m-r-8">account_circle</mat-icon>
+          Overview
         </a>
         <mat-divider inset></mat-divider>
         <a mat-list-item routerLink="/profile/settings">
-          <mat-icon class="icon-18 m-r-8">settings</mat-icon> Settings
+          <mat-icon class="icon-18 m-r-8">settings</mat-icon>
+          Settings
         </a>
       </mat-nav-list>
     </mat-card>
   </div>
-  <div class="matero-col" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-sm="66.67" fxFlex.gt-md="75">
+  <div class="matero-col" fxFlex="100" fxFlex.gt-md="75" fxFlex.gt-sm="66.67" fxFlex.gt-xs="50">
     <router-outlet></router-outlet>
   </div>
 </div>

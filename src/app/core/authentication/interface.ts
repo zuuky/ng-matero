@@ -1,6 +1,7 @@
 export interface TokenModel {
-  [key: string]: any;
   token: string | null | undefined;
+
+  [key: string]: any;
 }
 
 export interface AuthReferrer {

@@ -37,10 +37,7 @@
 
     $shadows: append(
       $shadows,
-      (sin(0deg + $direction) * $current-step)
-      (cos(0deg + $direction) * $current-step)
-      0
-      $current-color,
+      (sin(0deg + $direction) * $current-step) (cos(0deg + $direction) * $current-step) 0 $current-color,
       'comma'
     );
   }

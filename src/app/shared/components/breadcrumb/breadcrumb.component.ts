@@ -1,6 +1,6 @@
-import { Component, OnInit, ViewEncapsulation, Input } from '@angular/core';
-import { Router } from '@angular/router';
-import { MenuService } from '@core/bootstrap/menu.service';
+import {Component, Input, OnInit, ViewEncapsulation} from '@angular/core';
+import {Router} from '@angular/router';
+import {MenuService} from '@core/bootstrap/menu.service';
 
 @Component({
   selector: 'breadcrumb',
@@ -11,7 +11,8 @@ import { MenuService } from '@core/bootstrap/menu.service';
 export class BreadcrumbComponent implements OnInit {
   @Input() nav: string[] = [];
 
-  constructor(private _router: Router, private _menu: MenuService) {}
+  constructor(private _router: Router, private _menu: MenuService) {
+  }
 
   ngOnInit() {
     this.nav = Array.isArray(this.nav) ? this.nav : [];

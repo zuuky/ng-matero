@@ -1,14 +1,8 @@
-import { Injectable } from '@angular/core';
-import {
-  HttpEvent,
-  HttpInterceptor,
-  HttpHandler,
-  HttpRequest,
-  HttpErrorResponse,
-} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest,} from '@angular/common/http';
 
-import { Observable, of } from 'rxjs';
-import { mergeMap, catchError } from 'rxjs/operators';
+import {Observable, of} from 'rxjs';
+import {catchError, mergeMap} from 'rxjs/operators';
 
 /** Pass untouched request through to the next request handler. */
 @Injectable()

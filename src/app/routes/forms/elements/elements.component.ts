@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Validators, FormBuilder, FormGroup } from '@angular/forms';
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-forms-elements',
@@ -43,13 +43,14 @@ export class FormsElementsComponent implements OnInit {
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 
   getErrorMessage(form: FormGroup) {
     return form.get('email').hasError('required')
       ? 'You must enter a value'
       : form.get('email').hasError('email')
-      ? 'Not a valid email'
-      : '';
+        ? 'Not a valid email'
+        : '';
   }
 }

@@ -1,49 +1,49 @@
 <page-header class="bg-green-600"></page-header>
 
 <div class="data-grid-options">
-    <mat-checkbox [(ngModel)]="rowSelectable">Row Selectable</mat-checkbox>
-    <mat-checkbox [(ngModel)]="hideRowSelectionCheckbox">Hide checkbox</mat-checkbox>
-    <mat-radio-group [(ngModel)]="multiSelectable">
-        <mat-radio-button [value]="false">Single Selectable</mat-radio-button>
-        <mat-radio-button [value]="true">Multiple Selectable</mat-radio-button>
-    </mat-radio-group>
-    <mat-checkbox [(ngModel)]="showToolbar">Show Toolbar</mat-checkbox>
-    <mat-checkbox [(ngModel)]="columnHideable">Column Hiding</mat-checkbox>
-    <mat-checkbox [(ngModel)]="columnMovable">Column Moving</mat-checkbox>
-    <mat-checkbox [(ngModel)]="rowHover">Hover</mat-checkbox>
-    <mat-checkbox [(ngModel)]="rowStriped">Striped</mat-checkbox>
-    <mat-checkbox [(ngModel)]="expandable" (change)="enableRowExpandable()">Row Expandable
-    </mat-checkbox>
-    <mat-checkbox [(ngModel)]="showPaginator">Show Paginator</mat-checkbox>
-    <mat-checkbox [(ngModel)]="isLoading">Loading Status</mat-checkbox>
+  <mat-checkbox [(ngModel)]="rowSelectable">Row Selectable</mat-checkbox>
+  <mat-checkbox [(ngModel)]="hideRowSelectionCheckbox">Hide checkbox</mat-checkbox>
+  <mat-radio-group [(ngModel)]="multiSelectable">
+    <mat-radio-button [value]="false">Single Selectable</mat-radio-button>
+    <mat-radio-button [value]="true">Multiple Selectable</mat-radio-button>
+  </mat-radio-group>
+  <mat-checkbox [(ngModel)]="showToolbar">Show Toolbar</mat-checkbox>
+  <mat-checkbox [(ngModel)]="columnHideable">Column Hiding</mat-checkbox>
+  <mat-checkbox [(ngModel)]="columnMovable">Column Moving</mat-checkbox>
+  <mat-checkbox [(ngModel)]="rowHover">Hover</mat-checkbox>
+  <mat-checkbox [(ngModel)]="rowStriped">Striped</mat-checkbox>
+  <mat-checkbox (change)="enableRowExpandable()" [(ngModel)]="expandable">Row Expandable
+  </mat-checkbox>
+  <mat-checkbox [(ngModel)]="showPaginator">Show Paginator</mat-checkbox>
+  <mat-checkbox [(ngModel)]="isLoading">Loading Status</mat-checkbox>
 </div>
 <p>
-    <a href="https://ng-matero.github.io/extensions/data-grid" target="_blank">View more
-        examples</a>
+  <a href="https://ng-matero.github.io/extensions/data-grid" target="_blank">View more
+    examples</a>
 </p>
 
-<mtx-grid [data]="list"
-          [columns]="columns"
-          [loading]="isLoading"
-          [multiSelectable]="multiSelectable"
-          [rowSelectable]="rowSelectable"
-          [hideRowSelectionCheckbox]="hideRowSelectionCheckbox"
-          [rowHover]="rowHover"
-          [rowStriped]="rowStriped"
-          [showToolbar]="showToolbar"
-          [toolbarTitle]="'Data Grid Toolbar'"
+<mtx-grid (selectionChange)="changeSelect($event)"
+          (sortChange)="changeSort($event)"
           [columnHideable]="columnHideable"
           [columnMovable]="columnMovable"
+          [columns]="columns"
+          [data]="list"
           [expandable]="expandable"
           [expansionTemplate]="expansionTpl"
-          [pageOnFront]="showPaginator"
-          [showPaginator]="showPaginator"
-          [pageSizeOptions]="[5,10,50,100]"
+          [hideRowSelectionCheckbox]="hideRowSelectionCheckbox"
+          [loading]="isLoading"
+          [multiSelectable]="multiSelectable"
           [pageIndex]="0"
+          [pageOnFront]="showPaginator"
+          [pageSizeOptions]="[5,10,50,100]"
           [pageSize]="5"
-          (sortChange)="changeSort($event)"
-          (selectionChange)="changeSelect($event)">
+          [rowHover]="rowHover"
+          [rowSelectable]="rowSelectable"
+          [rowStriped]="rowStriped"
+          [showPaginator]="showPaginator"
+          [showToolbar]="showToolbar"
+          [toolbarTitle]="'Data Grid Toolbar'">
 </mtx-grid>
 <ng-template #expansionTpl let-row>
-    {{row.name}}
+  {{row.name}}
 </ng-template>

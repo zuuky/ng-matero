@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-tab',
@@ -8,9 +8,9 @@ import { Component } from '@angular/core';
 export class TabComponent {
   // Nav bar demo
   tabLinks = [
-    { label: 'Sun', link: 'sunny-tab' },
-    { label: 'Rain', link: 'rainy-tab' },
-    { label: 'Fog', link: 'foggy-tab' },
+    {label: 'Sun', link: 'sunny-tab'},
+    {label: 'Rain', link: 'rainy-tab'},
+    {label: 'Fog', link: 'foggy-tab'},
   ];
 
   // Standard tabs demo
@@ -46,16 +46,19 @@ export class TabComponent {
   selector: 'sunny-routed-content',
   template: 'Having a lot of light from the sun.',
 })
-export class SunnyTabContentComponent {}
+export class SunnyTabContentComponent {
+}
 
 @Component({
   selector: 'rainy-routed-content',
   template: 'A rainy period of time is one when it rains a lot',
 })
-export class RainyTabContentComponent {}
+export class RainyTabContentComponent {
+}
 
 @Component({
   selector: 'foggy-routed-content',
   template: 'If the weather is foggy, there is fog',
 })
-export class FoggyTabContentComponent {}
+export class FoggyTabContentComponent {
+}

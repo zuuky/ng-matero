@@ -1,4 +1,4 @@
-const { src, dest, series } = require('gulp');
+const {src, dest, series} = require('gulp');
 const each = require('gulp-each');
 const rename = require('gulp-rename');
 const replace = require('gulp-replace');
@@ -74,7 +74,7 @@ function copySrcAppRoutes(cb) {
 function updateVersions(cb) {
   return src([`${NG_ADD}/packages.js`, `${NG_ADD}/packages.ts`])
     .pipe(
-      each(function(content, file, callback) {
+      each(function (content, file, callback) {
         [
           '@angular/cdk',
           '@angular/material',

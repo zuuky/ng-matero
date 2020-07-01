@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Person, DataService } from '../data.service';
+import {Component, OnInit} from '@angular/core';
+import {Observable} from 'rxjs';
+import {DataService, Person} from '../data.service';
 
 @Component({
   selector: 'app-forms-selects',
@@ -20,10 +20,10 @@ export class FormsSelectComponent implements OnInit {
 
   selectedCarId = 3;
   cars = [
-    { id: 1, name: 'Volvo' },
-    { id: 2, name: 'Saab', disabled: true },
-    { id: 3, name: 'Opel' },
-    { id: 4, name: 'Audi' },
+    {id: 1, name: 'Volvo'},
+    {id: 2, name: 'Saab', disabled: true},
+    {id: 3, name: 'Opel'},
+    {id: 4, name: 'Audi'},
   ];
 
   // Tags
@@ -34,7 +34,8 @@ export class FormsSelectComponent implements OnInit {
   selectedCompanyCustom = '';
   selectedCompanyCustomPromise = '';
 
-  constructor(private dataService: DataService) {}
+  constructor(private dataService: DataService) {
+  }
 
   ngOnInit() {
     this.people$ = this.dataService.getPeople();
@@ -42,7 +43,7 @@ export class FormsSelectComponent implements OnInit {
     this.simpleItems = [true, 'Two', 3];
 
     this.companiesNames.forEach((c, i) => {
-      this.companies.push({ id: i, name: c });
+      this.companies.push({id: i, name: c});
     });
   }
 
@@ -52,14 +53,14 @@ export class FormsSelectComponent implements OnInit {
   }
 
   addTag(name: string) {
-    return { name, tag: true };
+    return {name, tag: true};
   }
 
   addTagPromise(name: string) {
     return new Promise(resolve => {
       this.loading = true;
       setTimeout(() => {
-        resolve({ id: 5, name, valid: true });
+        resolve({id: 5, name, valid: true});
         this.loading = false;
       }, 1000);
     });

@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, Validators, FormBuilder } from '@angular/forms';
-import { Router } from '@angular/router';
-import { TokenService, StartupService, SettingsService } from '@core';
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {Router} from '@angular/router';
+import {SettingsService, StartupService, TokenService} from '@core';
 
 @Component({
   selector: 'app-login',
@@ -23,8 +23,6 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  ngOnInit() {}
-
   get username() {
     return this.loginForm.get('username');
   }
@@ -33,12 +31,15 @@ export class LoginComponent implements OnInit {
     return this.loginForm.get('password');
   }
 
+  ngOnInit() {
+  }
+
   login() {
-    const { token, username, uid } = { token: 'ng-matero-token', uid: 1, username: 'ng-matero' };
+    const {token, username, uid} = {token: 'ng-matero-token', uid: 1, username: 'ng-matero'};
     // Set user info
-    this._settings.setUser({ id: uid, name: username, avatar: '' });
+    this._settings.setUser({id: uid, name: username, avatar: ''});
     // Set token info
-    this._token.set({ token, uid, username });
+    this._token.set({token, uid, username});
     // Regain the initial data
     this._startup.load().then(() => {
       let url = this._token.referrer!.url || '/';

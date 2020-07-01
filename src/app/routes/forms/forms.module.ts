@@ -1,10 +1,10 @@
-import { NgModule } from '@angular/core';
-import { SharedModule } from '@shared/shared.module';
-import { FormsRoutingModule } from './forms-routing.module';
+import {NgModule} from '@angular/core';
+import {SharedModule} from '@shared/shared.module';
+import {FormsRoutingModule} from './forms-routing.module';
 
-import { FormsElementsComponent } from './elements/elements.component';
-import { FormsSelectComponent } from './select/select.component';
-import { FormsDynamicComponent } from './dynamic/dynamic.component';
+import {FormsElementsComponent} from './elements/elements.component';
+import {FormsSelectComponent} from './select/select.component';
+import {FormsDynamicComponent} from './dynamic/dynamic.component';
 
 const COMPONENTS = [FormsElementsComponent, FormsSelectComponent, FormsDynamicComponent];
 const COMPONENTS_DYNAMIC = [];
@@ -14,4 +14,5 @@ const COMPONENTS_DYNAMIC = [];
   declarations: [...COMPONENTS, ...COMPONENTS_DYNAMIC],
   entryComponents: COMPONENTS_DYNAMIC,
 })
-export class FormsModule {}
+export class FormsModule {
+}

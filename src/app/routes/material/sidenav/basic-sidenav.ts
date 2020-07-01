@@ -6,12 +6,13 @@
  * found in the LICENSE file at https://angular.io/license
  */
 
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'basic-sidenav',
   templateUrl: 'basic-sidenav.html',
   styleUrls: ['shared.scss'],
-  host: { class: 'demo-sidenav-app' },
+  host: {class: 'demo-sidenav-app'},
 })
-export class SidenavBasicComponent {}
+export class SidenavBasicComponent {
+}

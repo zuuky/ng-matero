@@ -2,11 +2,11 @@
   <mat-card class="mat-elevation-z4 m-b-0" style="max-width: 380px;">
     <mat-card-title class="text-center m-b-24">{{'login.title' | translate}}!</mat-card-title>
     <mat-card-content>
-      <form class="form-field-full" [formGroup]="loginForm">
+      <form [formGroup]="loginForm" class="form-field-full">
 
         <mat-form-field appearance="outline">
           <mat-label>{{'login.username' | translate}}: ng-matero</mat-label>
-          <input matInput placeholder="ng-matero" formControlName="username" required>
+          <input formControlName="username" matInput placeholder="ng-matero" required>
           <mat-error *ngIf="username.invalid">
             {{'login.please-enter' | translate}} <strong>ng-matero</strong>
           </mat-error>
@@ -14,8 +14,8 @@
 
         <mat-form-field appearance="outline">
           <mat-label>{{'login.password' | translate}}: ng-matero</mat-label>
-          <input matInput placeholder="ng-matero" type="password"
-                 formControlName="password" required>
+          <input formControlName="password" matInput placeholder="ng-matero"
+                 required type="password">
           <mat-error *ngIf="password.invalid">
             {{'login.please-enter' | translate}} <strong>ng-matero</strong>
           </mat-error>
@@ -25,9 +25,9 @@
           <mat-checkbox>{{'login.remember-me' | translate}}</mat-checkbox>
         </div>
 
-        <button class="w-full" mat-raised-button color="primary"
-                [disabled]="loginForm.invalid"
-                (click)="login()">{{'login.login' | translate}}</button>
+        <button (click)="login()" [disabled]="loginForm.invalid" class="w-full"
+                color="primary"
+                mat-raised-button>{{'login.login' | translate}}</button>
 
         <div class="m-t-16">{{'login.have-no-account' | translate}}?
           <a routerLink="/auth/register">{{'login.create-one' | translate}}</a>

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 
 @Injectable({
   providedIn: 'root',
@@ -6,10 +6,7 @@ import { Injectable } from '@angular/core';
 export class PreloaderService {
   private _selector = 'globalLoader';
 
-  constructor() {}
-
-  private _getElement() {
-    return document.getElementById(this._selector);
+  constructor() {
   }
 
   hide() {
@@ -23,5 +20,9 @@ export class PreloaderService {
         el.className += ' global-loader-fade-in';
       }
     }
+  }
+
+  private _getElement() {
+    return document.getElementById(this._selector);
   }
 }

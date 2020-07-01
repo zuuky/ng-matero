@@ -1,14 +1,14 @@
 import {
-  Component,
-  OnInit,
   AfterViewInit,
-  OnDestroy,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
+  Component,
   NgZone,
+  OnDestroy,
+  OnInit,
 } from '@angular/core';
 
-import { DashboardService } from './dashboard.srevice';
+import {DashboardService} from './dashboard.srevice';
 
 @Component({
   selector: 'app-dashboard',
@@ -40,9 +40,11 @@ export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
     private dashboardSrv: DashboardService,
     private ngZone: NgZone,
     private cdr: ChangeDetectorRef
-  ) {}
+  ) {
+  }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 
   ngAfterViewInit() {
     this.ngZone.runOutsideAngular(() => this.initChart());

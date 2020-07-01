@@ -4,7 +4,7 @@
   <section>
     <h2>Notification</h2>
     <p>Showing a notification by snack bar without showing actions</p>
-    <button mat-raised-button color="primary" (click)="openNotificationSnackBar()">
+    <button (click)="openNotificationSnackBar()" color="primary" mat-raised-button>
       Support
     </button>
   </section>
@@ -12,6 +12,6 @@
   <section>
     <h2>Disco party </h2>
     <p>Showing a notification by snack bar with a dismiss button</p>
-    <button mat-button (click)="openDiscoPartySnackBar()">Disco</button>
+    <button (click)="openDiscoPartySnackBar()" mat-button>Disco</button>
   </section>
 </mat-card>

@@ -6,18 +6,18 @@
     <section>
       <h2>Icon Trigger</h2>
       <mat-menu #menu1="matMenu">
-        <button mat-menu-item> Settings </button>
-        <button mat-menu-item> Help </button>
+        <button mat-menu-item>Settings</button>
+        <button mat-menu-item>Help</button>
       </mat-menu>
 
-      <button mat-icon-button [matMenuTriggerFor]="menu1" aria-label="Open Menu">
+      <button [matMenuTriggerFor]="menu1" aria-label="Open Menu" mat-icon-button>
         <mat-icon>more_vert</mat-icon>
       </button>
     </section>
 
     <section>
       <h2>Menu with Icons</h2>
-      <button mat-icon-button [matMenuTriggerFor]="menu2" aria-label="Open Menu">
+      <button [matMenuTriggerFor]="menu2" aria-label="Open Menu" mat-icon-button>
         <mat-icon>more_vert</mat-icon>
       </button>
 
@@ -39,7 +39,7 @@
 
     <section>
       <h2>Menu with links</h2>
-      <button mat-icon-button [matMenuTriggerFor]="menu3" aria-label="Learn more about Angular">
+      <button [matMenuTriggerFor]="menu3" aria-label="Learn more about Angular" mat-icon-button>
         <mat-icon>more_vert</mat-icon>
       </button>
 

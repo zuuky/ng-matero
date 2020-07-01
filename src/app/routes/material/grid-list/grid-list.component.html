@@ -3,7 +3,7 @@
 <mat-card>
   <section>
     <h2>Types of coffee (fix-height grid-list)</h2>
-    <mat-grid-list role="list" [cols]="fixedCols" [rowHeight]="fixedRowHeight">
+    <mat-grid-list [cols]="fixedCols" [rowHeight]="fixedRowHeight" role="list">
       <mat-grid-tile *ngFor="let tile of tiles" [colspan]="tile.cols" [rowspan]="tile.rows"
                      [style.background]="tile.color" role="listitem">
         {{tile.text}}
@@ -13,7 +13,7 @@
 
   <section>
     <h2>Types of coffee (ratio-height grid list)</h2>
-    <mat-grid-list role="list" cols="2" [rowHeight]="ratio" gutterSize="4px">
+    <mat-grid-list [rowHeight]="ratio" cols="2" gutterSize="4px" role="list">
       <mat-grid-tile *ngFor="let tile of tiles" [style.background]="'lightblue'" role="listitem">
         {{tile.text}}
       </mat-grid-tile>
@@ -22,9 +22,9 @@
 
   <section>
     <h2>Types of coffee (fit-height grid list)</h2>
-    <mat-grid-list role="list" cols="2" rowHeight="fit" [gutterSize]="ratioGutter"
-                   [style.height]="fitListHeight">
-      <mat-grid-tile *ngFor="let tile of tiles" role="listitem" [style.background]="'#F1EBBA'">
+    <mat-grid-list [gutterSize]="ratioGutter" [style.height]="fitListHeight" cols="2" role="list"
+                   rowHeight="fit">
+      <mat-grid-tile *ngFor="let tile of tiles" [style.background]="'#F1EBBA'" role="listitem">
         {{tile.text}}
       </mat-grid-tile>
     </mat-grid-list>
@@ -32,7 +32,7 @@
 
   <section>
     <h2>Angular team dogs (Grid list with header and footer)</h2>
-    <mat-grid-list role="list" cols="3" rowHeight="200px">
+    <mat-grid-list cols="3" role="list" rowHeight="200px">
       <mat-grid-tile *ngFor="let dog of dogs" role="listitem">
         <mat-grid-tile-header>{{dog.name}}</mat-grid-tile-header>
         <img alt="Photo of {{dog.name}}"

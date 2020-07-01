@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import {Component} from '@angular/core';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-icon',
@@ -7,9 +7,10 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./icon.component.scss'],
 })
 export class IconComponent {
-  constructor(private snackBar: MatSnackBar) {}
+  constructor(private snackBar: MatSnackBar) {
+  }
 
   deleteIcon() {
-    this.snackBar.open('Item deleted', '', { duration: 2000 });
+    this.snackBar.open('Item deleted', '', {duration: 2000});
   }
 }

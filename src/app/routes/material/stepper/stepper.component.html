@@ -1,15 +1,15 @@
 <breadcrumb></breadcrumb>
 
 <mat-card>
-  <button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">
+  <button (click)="isLinear = !isLinear" id="toggle-linear" mat-raised-button>
     {{!isLinear ? 'Enable linear mode' : 'Disable linear mode'}}
   </button>
-  <mat-horizontal-stepper [linear]="isLinear" #stepper>
+  <mat-horizontal-stepper #stepper [linear]="isLinear">
     <mat-step [stepControl]="firstFormGroup">
       <form [formGroup]="firstFormGroup">
         <ng-template matStepLabel>Fill out your name</ng-template>
         <mat-form-field>
-          <input matInput placeholder="Last name, First name" formControlName="firstCtrl"
+          <input formControlName="firstCtrl" matInput placeholder="Last name, First name"
                  required>
         </mat-form-field>
         <div>
@@ -21,7 +21,7 @@
       <form [formGroup]="secondFormGroup">
         <ng-template matStepLabel>Fill out your address</ng-template>
         <mat-form-field>
-          <input matInput placeholder="Address" formControlName="secondCtrl" required>
+          <input formControlName="secondCtrl" matInput placeholder="Address" required>
         </mat-form-field>
         <div>
           <button mat-button matStepperPrevious>Back</button>
@@ -34,7 +34,7 @@
       You are now done.
       <div>
         <button mat-button matStepperPrevious>Back</button>
-        <button mat-button (click)="stepper.reset()">Reset</button>
+        <button (click)="stepper.reset()" mat-button>Reset</button>
       </div>
     </mat-step>
   </mat-horizontal-stepper>

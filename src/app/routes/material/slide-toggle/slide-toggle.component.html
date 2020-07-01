@@ -4,7 +4,7 @@
   <section>
     <h2>Receive email update</h2>
     <p>Showing a toggle to manage whether receive email update.</p>
-    <mat-slide-toggle color="primary" [(ngModel)]="emailToggle">
+    <mat-slide-toggle [(ngModel)]="emailToggle" color="primary">
       Receive email update
     </mat-slide-toggle>
   </section>
@@ -12,7 +12,7 @@
   <section>
     <h2>Music</h2>
     <p>Showing a disabled toggle to control music on/off status.</p>
-    <mat-slide-toggle color="accent" [disabled]="true" [(ngModel)]="musicToggle">
+    <mat-slide-toggle [(ngModel)]="musicToggle" [disabled]="true" color="accent">
       Music {{musicToggle ? 'on' : 'off'}} (disabled)
     </mat-slide-toggle>
   </section>
@@ -21,7 +21,7 @@
     <h2>Terms and conditions</h2>
     <p>Showing a required toggle to accept terms and conditions in a form.</p>
     <form #form="ngForm" (ngSubmit)="onFormSubmit()" ngNativeValidate>
-      <mat-slide-toggle name="termsToggle" required ngModel>
+      <mat-slide-toggle name="termsToggle" ngModel required>
         I agree to terms and conditions
       </mat-slide-toggle>
       <p>

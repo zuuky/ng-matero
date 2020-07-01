@@ -1,14 +1,16 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
-import { PreloaderService } from '@core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {PreloaderService} from '@core';
 
 @Component({
   selector: 'app-root',
   template: '<router-outlet></router-outlet>',
 })
 export class AppComponent implements OnInit, AfterViewInit {
-  constructor(private preloader: PreloaderService) {}
+  constructor(private preloader: PreloaderService) {
+  }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 
   ngAfterViewInit() {
     this.preloader.hide();

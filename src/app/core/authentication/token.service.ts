@@ -1,9 +1,9 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { share } from 'rxjs/operators';
+import {Injectable} from '@angular/core';
+import {BehaviorSubject, Observable} from 'rxjs';
+import {share} from 'rxjs/operators';
 
-import { LocalStorageService } from '@shared/services/storage.service';
-import { TokenModel, AuthReferrer } from './interface';
+import {LocalStorageService} from '@shared/services/storage.service';
+import {AuthReferrer, TokenModel} from './interface';
 
 const TOKEN_KEY = 'jwt';
 
@@ -13,9 +13,10 @@ const TOKEN_KEY = 'jwt';
 export class TokenService {
   private _change$ = new BehaviorSubject(null);
 
-  private _referrer: AuthReferrer = {};
+  constructor(private _store: LocalStorageService) {
+  }
 
-  constructor(private _store: LocalStorageService) {}
+  private _referrer: AuthReferrer = {};
 
   /**
    * The referrer of current page

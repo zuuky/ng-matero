@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
-import { MatChipInputEvent } from '@angular/material/chips';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import {Component} from '@angular/core';
+import {MatChipInputEvent} from '@angular/material/chips';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 export interface Person {
   name: string;
@@ -20,22 +20,23 @@ export class ChipsComponent {
   message = '';
 
   people: Person[] = [
-    { name: 'Kara' },
-    { name: 'Jeremy' },
-    { name: 'Topher' },
-    { name: 'Elad' },
-    { name: 'Kristiyan' },
-    { name: 'Paul' },
+    {name: 'Kara'},
+    {name: 'Jeremy'},
+    {name: 'Topher'},
+    {name: 'Elad'},
+    {name: 'Kristiyan'},
+    {name: 'Paul'},
   ];
 
   availableColors = [
-    { name: 'none', color: '' },
-    { name: 'Primary', color: 'primary' },
-    { name: 'Accent', color: 'accent' },
-    { name: 'Warn', color: 'warn' },
+    {name: 'none', color: ''},
+    {name: 'Primary', color: 'primary'},
+    {name: 'Accent', color: 'accent'},
+    {name: 'Warn', color: 'warn'},
   ];
 
-  constructor(public snackBar: MatSnackBar) {}
+  constructor(public snackBar: MatSnackBar) {
+  }
 
   displayMessage(message: string): void {
     this.message = message;
@@ -48,8 +49,8 @@ export class ChipsComponent {
     // Add our person
     if ((value || '').trim()) {
       const name = value.trim();
-      this.people.push({ name });
-      this.snackBar.open(`${name} added`, '', { duration: 2000 });
+      this.people.push({name});
+      this.snackBar.open(`${name} added`, '', {duration: 2000});
     }
 
     // Reset the input value
@@ -63,7 +64,7 @@ export class ChipsComponent {
 
     if (index >= 0) {
       this.people.splice(index, 1);
-      this.snackBar.open(`${person.name} deleted`, '', { duration: 2000 });
+      this.snackBar.open(`${person.name} deleted`, '', {duration: 2000});
     }
   }
 

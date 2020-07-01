@@ -1,16 +1,16 @@
-import { Injectable, Inject, Optional } from '@angular/core';
+import {Inject, Injectable, Optional} from '@angular/core';
 import {
+  ActivatedRouteSnapshot,
   CanActivate,
   CanActivateChild,
   CanLoad,
   Route,
-  ActivatedRouteSnapshot,
+  Router,
   RouterStateSnapshot,
   UrlSegment,
-  Router,
 } from '@angular/router';
-import { DOCUMENT } from '@angular/common';
-import { TokenService } from './token.service';
+import {DOCUMENT} from '@angular/common';
+import {TokenService} from './token.service';
 
 const LOGIN_URL = '/auth/login';
 
@@ -18,6 +18,28 @@ const LOGIN_URL = '/auth/login';
   providedIn: 'root',
 })
 export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
+  constructor(
+    private _router: Router,
+    private _token: TokenService,
+    @Optional() @Inject(DOCUMENT) private _document: any
+  ) {
+  }
+
+  // lazy loading
+  canLoad(route: Route, segments: UrlSegment[]): boolean {
+    return this._process();
+  }
+
+  // route
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+    return this._process();
+  }
+
+  // all children route
+  canActivateChild(childRoute: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+    return this._process();
+  }
+
   private _gotoLogin(url?: string) {
     setTimeout(() => {
       if (/^https?:\/\//g.test(url!)) {
@@ -38,24 +60,5 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
       this._gotoLogin(LOGIN_URL);
     }
     return res;
-  }
-
-  constructor(
-    private _router: Router,
-    private _token: TokenService,
-    @Optional() @Inject(DOCUMENT) private _document: any
-  ) {}
-
-  // lazy loading
-  canLoad(route: Route, segments: UrlSegment[]): boolean {
-    return this._process();
-  }
-  // route
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    return this._process();
-  }
-  // all children route
-  canActivateChild(childRoute: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    return this._process();
   }
 }

@@ -1,7 +1,7 @@
 <breadcrumb></breadcrumb>
 
 <mat-card>
-  <table matSort (matSortChange)="sortData($event)">
+  <table (matSortChange)="sortData($event)" matSort>
     <tr>
       <th mat-sort-header="name">Dessert (100g)</th>
       <th mat-sort-header="calories">Calories</th>

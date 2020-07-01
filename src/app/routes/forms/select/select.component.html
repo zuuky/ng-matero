@@ -8,8 +8,8 @@
   </a>, it is a Material form field wrapper of <code>ng-select</code>.
 </div>
 
-<div fxLayout="row wrap" class="matero-row">
-  <div fxFlex="100" fxFlex.gt-sm="50" class="matero-col">
+<div class="matero-row" fxLayout="row wrap">
+  <div class="matero-col" fxFlex="100" fxFlex.gt-sm="50">
     <mat-card>
       <mat-card-title>Data Source</mat-card-title>
       <div>
@@ -20,8 +20,8 @@
         </p>
         <mat-form-field class="w-full">
           <mat-label>select person</mat-label>
-          <mtx-select [items]="people$ | async" bindLabel="name" bindValue="id" autofocus
-                      [(ngModel)]="selectedPersonId">
+          <mtx-select [(ngModel)]="selectedPersonId" [items]="people$ | async" autofocus bindLabel="name"
+                      bindValue="id">
           </mtx-select>
         </mat-form-field>
         Selected: {{selectedPersonId}}
@@ -32,8 +32,8 @@
         </p>
         <mat-form-field class="w-full">
           <mat-label>select person</mat-label>
-          <mtx-select [items]="people" bindLabel="name" bindValue="id"
-                      [(ngModel)]="selectedPersonId2">
+          <mtx-select [(ngModel)]="selectedPersonId2" [items]="people" bindLabel="name"
+                      bindValue="id">
           </mtx-select>
         </mat-form-field>
         Selected: {{selectedPersonId2}}
@@ -46,7 +46,7 @@
         </p>
         <mat-form-field class="w-full">
           <mat-label>select person</mat-label>
-          <mtx-select [items]="simpleItems" [(ngModel)]="selectedSimpleItem">
+          <mtx-select [(ngModel)]="selectedSimpleItem" [items]="simpleItems">
           </mtx-select>
         </mat-form-field>
         Selected: {{selectedSimpleItem | json}}
@@ -57,15 +57,15 @@
           using
           <b>ng-option</b> component.
         </p>
-        <button type="button" mat-raised-button color="primary" (click)="toggleDisabled()"
-                class="m-b-8">
+        <button (click)="toggleDisabled()" class="m-b-8" color="primary" mat-raised-button
+                type="button">
           Toggle option[1] disabled
         </button>
 
         <mat-form-field class="w-full">
           <mat-label>Select car</mat-label>
           <mtx-select [(ngModel)]="selectedCarId">
-            <ng-option *ngFor="let car of cars" [value]="car.id" [disabled]="car.disabled">
+            <ng-option *ngFor="let car of cars" [disabled]="car.disabled" [value]="car.id">
               {{car.name}}</ng-option>
             <ng-option [value]="'custom'">Custom</ng-option>
           </mtx-select>
@@ -76,14 +76,14 @@
     </mat-card>
   </div>
 
-  <div fxFlex="100" fxFlex.gt-sm="50" class="matero-col">
+  <div class="matero-col" fxFlex="100" fxFlex.gt-sm="50">
     <mat-card>
       <mat-card-title>Tags</mat-card-title>
       <div>
         <label>Default tags</label>
         <mat-form-field class="w-full">
           <mat-label>Select item</mat-label>
-          <mtx-select [items]="[]" [addTag]="true" [(ngModel)]="selectedCompany">
+          <mtx-select [(ngModel)]="selectedCompany" [addTag]="true" [items]="[]">
           </mtx-select>
         </mat-form-field>
 
@@ -95,8 +95,8 @@
         <label>Custom tags</label>
         <mat-form-field class="w-full">
           <mat-label>Select item</mat-label>
-          <mtx-select [items]="companies" [addTag]="addTag" [hideSelected]="true" multiple="true"
-                      bindLabel="name" [(ngModel)]="selectedCompanyCustom">
+          <mtx-select [(ngModel)]="selectedCompanyCustom" [addTag]="addTag" [hideSelected]="true" [items]="companies"
+                      bindLabel="name" multiple="true">
           </mtx-select>
         </mat-form-field>
 
@@ -109,10 +109,11 @@
         <label>Server side tags</label>
         <mat-form-field class="w-full">
           <mat-label>Select item</mat-label>
-          <mtx-select [items]="companies" [addTag]="addTagPromise" multiple="true" bindLabel="name"
-                      [loading]="loading" [(ngModel)]="selectedCompanyCustomPromise">
+          <mtx-select [(ngModel)]="selectedCompanyCustomPromise" [addTag]="addTagPromise" [items]="companies"
+                      [loading]="loading"
+                      bindLabel="name" multiple="true">
 
-            <ng-template ng-tag-tmp let-search="searchTerm">
+            <ng-template let-search="searchTerm" ng-tag-tmp>
               <b>create new</b>: {{search}}
             </ng-template>
           </mtx-select>
@@ -123,8 +124,8 @@
         <label>Tagging without dropdown. Press enter to add item</label>
         <mat-form-field class="w-full">
           <mat-label>Select item</mat-label>
-          <mtx-select [items]="[]" [addTag]="true" [multiple]="true" [selectOnTab]="true"
-                      [isOpen]="false">
+          <mtx-select [addTag]="true" [isOpen]="false" [items]="[]" [multiple]="true"
+                      [selectOnTab]="true">
           </mtx-select>
         </mat-form-field>
 

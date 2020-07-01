@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { SettingsService, TokenService, MenuService } from '@core';
+import {Component} from '@angular/core';
+import {Router} from '@angular/router';
+import {MenuService, SettingsService, TokenService} from '@core';
 
 @Component({
   selector: 'app-user',
@@ -37,7 +37,8 @@ export class UserComponent {
     private _settings: SettingsService,
     private _token: TokenService,
     private _menu: MenuService
-  ) {}
+  ) {
+  }
 
   logout() {
     this._token.clear();

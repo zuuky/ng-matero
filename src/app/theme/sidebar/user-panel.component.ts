@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-user-panel',
@@ -26,4 +26,5 @@ import { Component } from '@angular/core';
     </div>
   `,
 })
-export class UserPanelComponent {}
+export class UserPanelComponent {
+}

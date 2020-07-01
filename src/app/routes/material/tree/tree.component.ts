@@ -1,8 +1,8 @@
-import { CollectionViewer, SelectionChange } from '@angular/cdk/collections';
-import { FlatTreeControl } from '@angular/cdk/tree';
-import { Component, Injectable, OnInit } from '@angular/core';
-import { BehaviorSubject, merge, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import {CollectionViewer, SelectionChange} from '@angular/cdk/collections';
+import {FlatTreeControl} from '@angular/cdk/tree';
+import {Component, Injectable} from '@angular/core';
+import {BehaviorSubject, merge, Observable} from 'rxjs';
+import {map} from 'rxjs/operators';
 
 /** Flat node with expandable and level information */
 export class DynamicFlatNode {
@@ -11,7 +11,8 @@ export class DynamicFlatNode {
     public level = 1,
     public expandable = false,
     public isLoading = false
-  ) {}
+  ) {
+  }
 }
 
 /**
@@ -42,6 +43,7 @@ export class DynamicDatabase {
     return this.dataMap.has(node);
   }
 }
+
 /**
  * File database, it can build a tree structured Json object from string.
  * Each node in Json object represents a file or a directory. For a file, it has filename and type.
@@ -53,18 +55,20 @@ export class DynamicDatabase {
 export class DynamicDataSource {
   dataChange = new BehaviorSubject<DynamicFlatNode[]>([]);
 
+  constructor(
+    private treeControl: FlatTreeControl<DynamicFlatNode>,
+    private database: DynamicDatabase
+  ) {
+  }
+
   get data(): DynamicFlatNode[] {
     return this.dataChange.value;
   }
+
   set data(value: DynamicFlatNode[]) {
     this.treeControl.dataNodes = value;
     this.dataChange.next(value);
   }
-
-  constructor(
-    private treeControl: FlatTreeControl<DynamicFlatNode>,
-    private database: DynamicDatabase
-  ) {}
 
   connect(collectionViewer: CollectionViewer): Observable<DynamicFlatNode[]> {
     // tslint:disable-next-line: deprecation
@@ -125,7 +129,8 @@ export class DynamicDataSource {
           let i = index + 1;
           i < this.data.length && this.data[i].level > node.level;
           i++, count++
-        ) {}
+        ) {
+        }
         this.data.splice(index + 1, count);
       }
 
@@ -146,6 +151,9 @@ export class DynamicDataSource {
   providers: [DynamicDatabase],
 })
 export class TreeComponent {
+  treeControl: FlatTreeControl<DynamicFlatNode>;
+  dataSource: DynamicDataSource;
+
   constructor(database: DynamicDatabase) {
     this.treeControl = new FlatTreeControl<DynamicFlatNode>(
       this.getLevel,
@@ -155,10 +163,6 @@ export class TreeComponent {
 
     this.dataSource.data = database.initialData();
   }
-
-  treeControl: FlatTreeControl<DynamicFlatNode>;
-
-  dataSource: DynamicDataSource;
 
   getLevel = (node: DynamicFlatNode) => node.level;
 

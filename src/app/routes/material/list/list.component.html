@@ -6,7 +6,7 @@
       <h2> Seasoning </h2>
       <p>Showing a non-interactive list of seasonings.</p>
       <mat-list role="list">
-        <mat-list-item role="listitem" *ngFor="let item of items"> {{item}} </mat-list-item>
+        <mat-list-item *ngFor="let item of items" role="listitem"> {{item}} </mat-list-item>
       </mat-list>
     </section>
 
@@ -15,8 +15,8 @@
       <h2>Mailbox navigation</h2>
       <p>Showing a navigation list with links to google search</p>
       <mat-nav-list>
-        <a mat-list-item *ngFor="let link of links"
-           href="https://www.google.com/search?q={{link.name}}">
+        <a *ngFor="let link of links" href="https://www.google.com/search?q={{link.name}}"
+           mat-list-item>
           {{link.name}}
         </a>
       </mat-nav-list>
@@ -29,11 +29,11 @@
         message subject, and content of the message.
       </p>
       <mat-list role="list">
-        <mat-list-item role="listitem" *ngFor="let message of messages">
-          <img mat-list-avatar [src]="message.image" [alt]="message.from">
+        <mat-list-item *ngFor="let message of messages" role="listitem">
+          <img [alt]="message.from" [src]="message.image" mat-list-avatar>
           <h3 mat-line> {{message.from}} </h3>
           <p mat-line> {{message.subject}} </p>
-          <p mat-line class="demo-secondary-text"> {{message.message}} </p>
+          <p class="demo-secondary-text" mat-line> {{message.message}} </p>
         </mat-list-item>
       </mat-list>
 
@@ -42,8 +42,8 @@
     <section>
       <h2>Seasoning</h2>
       <p>Showing a non-interactive list of seasonings with dense style.</p>
-      <mat-list role="list" dense>
-        <mat-list-item role="listitem" *ngFor="let item of items"> {{item}} </mat-list-item>
+      <mat-list dense role="list">
+        <mat-list-item *ngFor="let item of items" role="listitem"> {{item}} </mat-list-item>
       </mat-list>
     </section>
 
@@ -52,17 +52,17 @@
       <p>Showing a list with two sections, "folders" and "notes".</p>
       <mat-list role="list">
         <h3 mat-subheader>Folders</h3>
-        <mat-list-item role="listitem" *ngFor="let folder of folders">
+        <mat-list-item *ngFor="let folder of folders" role="listitem">
           <mat-icon mat-list-icon>folder</mat-icon>
           <h4 mat-line>{{folder.name}}</h4>
-          <p mat-line class="demo-secondary-text"> {{folder.updated}} </p>
+          <p class="demo-secondary-text" mat-line> {{folder.updated}} </p>
         </mat-list-item>
         <mat-divider></mat-divider>
         <h3 mat-subheader>Notes</h3>
-        <mat-list-item role="listitem" *ngFor="let note of notes">
+        <mat-list-item *ngFor="let note of notes" role="listitem">
           <mat-icon mat-list-icgon>note</mat-icon>
           <h4 mat-line>{{note.name}}</h4>
-          <p mat-line class="demo-secondary-text"> {{note.updated}} </p>
+          <p class="demo-secondary-text" mat-line> {{note.updated}} </p>
         </mat-list-item>
       </mat-list>
     </section>

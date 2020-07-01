@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-github-button',
@@ -28,4 +28,5 @@ import { Component } from '@angular/core';
     </a>
   `,
 })
-export class GithubButtonComponent {}
+export class GithubButtonComponent {
+}

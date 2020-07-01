@@ -1,8 +1,8 @@
 <h2 mat-dialog-title>Neptune</h2>
 
 <mat-dialog-content>
-  <img src="https://upload.wikimedia.org/wikipedia/commons/5/56/Neptune_Full.jpg"
-       alt="Neptune"/>
+  <img alt="Neptune"
+       src="https://upload.wikimedia.org/wikipedia/commons/5/56/Neptune_Full.jpg"/>
 
   <p>
     Neptune is the eighth and farthest known planet from the Sun in the Solar System. In the
@@ -16,12 +16,13 @@
 </mat-dialog-content>
 
 <mat-dialog-actions>
-  <button mat-raised-button color="primary" mat-dialog-close>Close</button>
+  <button color="primary" mat-dialog-close mat-raised-button>Close</button>
 
-  <a mat-button color="primary" href="https://en.wikipedia.org/wiki/Neptune" target="_blank">
+  <a color="primary" href="https://en.wikipedia.org/wiki/Neptune" mat-button target="_blank">
     Read more on Wikipedia
   </a>
 
-  <button mat-button color="secondary" (click)="showInStackedDialog()">
-    Show in dialog</button>
+  <button (click)="showInStackedDialog()" color="secondary" mat-button>
+    Show in dialog
+  </button>
 </mat-dialog-actions>

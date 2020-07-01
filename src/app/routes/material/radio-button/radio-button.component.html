@@ -3,7 +3,7 @@
 <mat-card>
   <section>
     <h2>Radio buttons in group</h2>
-    <mat-radio-group name="seasons" [(ngModel)]="favoriteSeason" aria-label="Seasons">
+    <mat-radio-group [(ngModel)]="favoriteSeason" aria-label="Seasons" name="seasons">
       <mat-radio-button *ngFor="let season of seasonOptions" [value]="season">
         {{season}}
       </mat-radio-button>
@@ -12,7 +12,7 @@
 
   <section>
     <h2>Radio buttons with align-end label position</h2>
-    <mat-radio-group name="bread" align="end" aria-label="Breads">
+    <mat-radio-group align="end" aria-label="Breads" name="bread">
       <mat-radio-button value="toast">Toast</mat-radio-button>
       <mat-radio-button value="biscuit">Biscuit</mat-radio-button>
       <mat-radio-button value="bagel">Bagel</mat-radio-button>
@@ -27,14 +27,14 @@
     </p>
     <mat-radio-button name="disable">Yes</mat-radio-button>
     <mat-radio-button name="disable">No</mat-radio-button>
-    <mat-radio-button name="disable" [disabled]="true">Maybe</mat-radio-button>
+    <mat-radio-button [disabled]="true" name="disable">Maybe</mat-radio-button>
   </section>
 
   <section>
     <h2>Radio buttons with different colors</h2>
     <mat-radio-button name="color">Default (accent)</mat-radio-button>
-    <mat-radio-button name="color" color="primary">Primary</mat-radio-button>
-    <mat-radio-button name="color" color="accent">Accent</mat-radio-button>
-    <mat-radio-button name="color" color="warn">Warn</mat-radio-button>
+    <mat-radio-button color="primary" name="color">Primary</mat-radio-button>
+    <mat-radio-button color="accent" name="color">Accent</mat-radio-button>
+    <mat-radio-button color="warn" name="color">Warn</mat-radio-button>
   </section>
 </mat-card>

@@ -1,6 +1,6 @@
-import { Component, OnInit, ViewEncapsulation, Input } from '@angular/core';
-import { MenuService } from '@core/bootstrap/menu.service';
-import { Router } from '@angular/router';
+import {Component, Input, OnInit, ViewEncapsulation} from '@angular/core';
+import {MenuService} from '@core/bootstrap/menu.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'page-header',
@@ -17,7 +17,8 @@ export class PageHeaderComponent implements OnInit {
   @Input() nav: string[] = [];
   @Input() showBreadCrumb = true;
 
-  constructor(private _router: Router, private _menu: MenuService) {}
+  constructor(private _router: Router, private _menu: MenuService) {
+  }
 
   ngOnInit() {
     this.nav = Array.isArray(this.nav) ? this.nav : [];

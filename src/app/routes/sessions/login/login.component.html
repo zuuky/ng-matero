@@ -6,7 +6,9 @@
 
         <mat-form-field appearance="outline">
           <mat-label>{{'login.username' | translate}}: ng-matero</mat-label>
-          <input formControlName="username" matInput placeholder="ng-matero" required>
+          <label>
+            <input formControlName="username" matInput placeholder="ng-matero" required>
+          </label>
           <mat-error *ngIf="username.invalid">
             {{'login.please-enter' | translate}} <strong>ng-matero</strong>
           </mat-error>
@@ -14,8 +16,10 @@
 
         <mat-form-field appearance="outline">
           <mat-label>{{'login.password' | translate}}: ng-matero</mat-label>
-          <input formControlName="password" matInput placeholder="ng-matero"
-                 required type="password">
+          <label>
+            <input formControlName="password" matInput placeholder="ng-matero"
+                   required type="password">
+          </label>
           <mat-error *ngIf="password.invalid">
             {{'login.please-enter' | translate}} <strong>ng-matero</strong>
           </mat-error>
@@ -30,7 +34,7 @@
                 mat-raised-button>{{'login.login' | translate}}</button>
 
         <div class="m-t-16">{{'login.have-no-account' | translate}}?
-          <a routerLink="/auth/register">{{'login.create-one' | translate}}</a>
+          <a routerLink="{{registerUrl}}">{{'login.create-one' | translate}}</a>
         </div>
       </form>
     </mat-card-content>

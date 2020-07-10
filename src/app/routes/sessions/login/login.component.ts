@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {SettingsService, StartupService, TokenService} from '@core';
+import {ModelConsService} from '@shared/services/modelcons.service';
+import {HttpService} from '@shared/services/http.service';
 
 @Component({
   selector: 'app-login',
@@ -9,17 +11,18 @@ import {SettingsService, StartupService, TokenService} from '@core';
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
+  registerUrl: string = ModelConsService.REGISTER_URL;
 
   constructor(
     private _fb: FormBuilder,
     private _router: Router,
     private _token: TokenService,
     private _startup: StartupService,
-    private _settings: SettingsService
+    private _http: HttpService
   ) {
     this.loginForm = this._fb.group({
-      username: ['', [Validators.required, Validators.pattern('ng-matero')]],
-      password: ['', [Validators.required, Validators.pattern('ng-matero')]],
+      username: ['', [Validators.required, Validators.pattern('admin')]],
+      password: ['', [Validators.required, Validators.pattern('admin-pwd')]],
     });
   }
 
@@ -34,19 +37,24 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  login() {
-    const {token, username, uid} = {token: 'ng-matero-token', uid: 1, username: 'ng-matero'};
+  loginBak() {
     // Set user info
-    this._settings.setUser({id: uid, name: username, avatar: ''});
+    SettingsService.setUser({name: this.username.value});
     // Set token info
-    this._token.set({token, uid, username});
+    this._token.set({token: 'ng-matero-token'});
     // Regain the initial data
     this._startup.load().then(() => {
-      let url = this._token.referrer!.url || '/';
-      if (url.includes('/auth')) {
-        url = '/';
-      }
-      this._router.navigateByUrl(url);
+      this._router.navigateByUrl('/');
+    });
+  }
+
+  login() {
+    this._http.post(ModelConsService.LOGIN_URL, this.loginForm.value).subscribe((res: any) => {
+      SettingsService.setUser({name: this.username.value});
+      this._token.set({token: res.data});
+      this._startup.load().then(() => {
+        this._router.navigateByUrl('/');
+      });
     });
   }
 }

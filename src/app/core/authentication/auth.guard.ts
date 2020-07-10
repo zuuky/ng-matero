@@ -11,8 +11,7 @@ import {
 } from '@angular/router';
 import {DOCUMENT} from '@angular/common';
 import {TokenService} from './token.service';
-
-const LOGIN_URL = '/auth/login';
+import {ModelConsService} from '@shared/services/modelcons.service';
 
 @Injectable({
   providedIn: 'root',
@@ -23,6 +22,10 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
     private _token: TokenService,
     @Optional() @Inject(DOCUMENT) private _document: any
   ) {
+  }
+
+  static checkJWT(model: any): boolean {
+    return !!model?.token;
   }
 
   // lazy loading
@@ -50,14 +53,10 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
     });
   }
 
-  private _checkJWT(model: any, offset?: number): boolean {
-    return !!model?.token;
-  }
-
   private _process(): boolean {
-    const res = this._checkJWT(this._token.get<any>(), 1000);
+    const res = AuthGuard.checkJWT(TokenService.get<any>());
     if (!res) {
-      this._gotoLogin(LOGIN_URL);
+      this._gotoLogin(ModelConsService.LOGIN_URL);
     }
     return res;
   }

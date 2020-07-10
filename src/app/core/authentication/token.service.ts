@@ -4,16 +4,16 @@ import {share} from 'rxjs/operators';
 
 import {LocalStorageService} from '@shared/services/storage.service';
 import {AuthReferrer, TokenModel} from './interface';
-
-const TOKEN_KEY = 'jwt';
+import {ModelConsService} from '@shared/services/modelcons.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TokenService {
+
   private _change$ = new BehaviorSubject(null);
 
-  constructor(private _store: LocalStorageService) {
+  constructor() {
   }
 
   private _referrer: AuthReferrer = {};
@@ -25,18 +25,18 @@ export class TokenService {
     return this._referrer;
   }
 
-  set(data: TokenModel): boolean {
-    this._change$.next(data);
-    return this._store.set(TOKEN_KEY, data);
-  }
-
-  get<T extends TokenModel>(type?: new () => T): T {
-    const data = this._store.get(TOKEN_KEY);
+  static get<T extends TokenModel>(type?: new () => T): T {
+    const data = LocalStorageService.get(ModelConsService.TOKEN_KEY);
     return type ? (Object.assign(new type(), data) as T) : (data as T);
   }
 
-  clear() {
-    this._store.remove(TOKEN_KEY);
+  static clear() {
+    LocalStorageService.remove(ModelConsService.TOKEN_KEY);
+  }
+
+  set(data: TokenModel): boolean {
+    this._change$.next(data);
+    return LocalStorageService.set(ModelConsService.TOKEN_KEY, data);
   }
 
   change(): Observable<TokenModel | null> {

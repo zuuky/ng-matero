@@ -2,13 +2,12 @@ import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {AppSettings, defaults} from '../settings';
 import {LocalStorageService} from '@shared/services/storage.service';
-
-export const USER_KEY = 'usr';
+import {ModelConsService} from '@shared/services/modelcons.service';
 
 export interface User {
+  id?: number;
   name: string;
-  id: number;
-  avatar: string;
+  avatar?: string;
 }
 
 @Injectable({
@@ -18,11 +17,19 @@ export class SettingsService {
   private _options = defaults;
   private _notify$ = new BehaviorSubject<any>({});
 
-  constructor(private _store: LocalStorageService) {
+  constructor() {
   }
 
   get notify(): Observable<any> {
     return this._notify$.asObservable();
+  }
+
+  static setUser(value: User) {
+    LocalStorageService.set(ModelConsService.USER_KEY, value);
+  }
+
+  static removeUser() {
+    LocalStorageService.remove(ModelConsService.USER_KEY);
   }
 
   setLayout(options?: AppSettings): AppSettings {
@@ -36,14 +43,6 @@ export class SettingsService {
 
   getOptions(): AppSettings {
     return this._options;
-  }
-
-  setUser(value: User) {
-    this._store.set(USER_KEY, value);
-  }
-
-  removeUser() {
-    this._store.remove(USER_KEY);
   }
 
   setLanguage(lang: string) {

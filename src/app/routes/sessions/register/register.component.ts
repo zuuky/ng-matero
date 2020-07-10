@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {ModelConsService} from '@shared/services/modelcons.service';
 
 @Component({
   selector: 'app-register',
@@ -7,6 +8,8 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 })
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
+  loginUrl: string = ModelConsService.LOGIN_URL;
+
 
   constructor(private _fb: FormBuilder) {
     this.registerForm = this._fb.group({

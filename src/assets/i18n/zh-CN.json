@@ -64,7 +64,9 @@
     "sessions.404": "404",
     "sessions.500": "500",
     "helpers": "辅助工具",
-    "helpers.css-class": "CSS 类"
+    "helpers.css-class": "CSS 类",
+    "admins": "ADMIN",
+    "admins.demo": "测试例子"
   },
   "validations": {
     "required": "该字段必填",

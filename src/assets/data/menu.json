@@ -11,6 +11,19 @@
       }
     },
     {
+      "route": "admins",
+      "name": "admins",
+      "type": "sub",
+      "icon": "color_lens",
+      "children": [
+        {
+          "route": "demo",
+          "name": "demo",
+          "type": "link"
+        }
+      ]
+    },
+    {
       "route": "design",
       "name": "design",
       "type": "sub",

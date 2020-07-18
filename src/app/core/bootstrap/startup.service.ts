@@ -16,12 +16,12 @@ export class StartupService {
 
   load(): Promise<any> {
 
-    const menuUrl = '/sysMenu/selectSidebarMenus';
-    // const menuUrl = 'assets/data/menu.json?_t=' + Date.now();
+    // const menuUrl = '/sysMenu/selectSidebarMenus';
+    const menuUrl = 'assets/data/menu.json?_t=' + Date.now();
 
     if (AuthGuard.checkJWT(TokenService.get<any>())) {
       return new Promise((resolve, reject) => {
-        this._http.get(menuUrl).pipe(
+        this._http.get<any>(menuUrl).pipe(
           catchError(res => {
             resolve();
             return res;

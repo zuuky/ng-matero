@@ -1,3 +1,6 @@
+import {FormBuilder} from '@angular/forms';
+import {FormModel} from '../../routes/admins/demo/demo.component';
+
 /**
  * 序列化 JSON，同时转义，删除两边空格
  */
@@ -90,3 +93,18 @@ export function getScrollbarWidth() {
 
   return scrollbarWidth;
 }
+
+/**
+ * formModelToFormGroup
+ */
+export function formModelToFormGroup(formModels: FormModel[], formBuilder: FormBuilder) {
+  const group = {};
+  for (const model of formModels) {
+    group[model.name] = model.disabled ? [{
+      value: null,
+      disabled: true
+    }, model.validators] : [null, model.validators];
+  }
+  return formBuilder.group(group);
+}
+

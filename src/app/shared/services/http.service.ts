@@ -14,15 +14,15 @@ export class HttpService {
   }
 
   get(route: string): Observable<any> {
-    return this.httpClient.get(route);
+    return this.httpClient.get<any>(route);
   }
 
   upload(route: string, formData: FormData): Observable<any> {
-    return this.httpClient.post(route, formData);
+    return this.httpClient.post<any>(route, formData);
   }
 
   post(route: string, datas: any): Observable<any> {
-    return this.httpClient.post(route, datas, {headers: {contentType: 'application/x-www-form-urlencoded'}});
+    return this.httpClient.post<any>(route, datas, {headers: {contentType: 'application/x-www-form-urlencoded'}});
   }
 
   download(route: string, filename: string = null): void {

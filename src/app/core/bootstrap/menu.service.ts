@@ -53,7 +53,6 @@ export class MenuService {
     return this.getMenuLevel(routeArr)[routeArr.length - 1];
   }
 
-  // TODO:
   getMenuLevel(routeArr: string[]): string[] {
     const tmpArr = [];
     this._menu$.value.forEach(item => {

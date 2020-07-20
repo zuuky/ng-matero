@@ -13,7 +13,7 @@
     "hmr": "ng serve --hmr -c hmr --disable-host-check",
     "deploy": "angular-cli-ghpages --no-silent --dir=dist/ng-matero",
     "release": "npm run build:release && npm run deploy",
-    "postinstall": "ngcc --properties es2015 browser module main --first-only --create-ivy-entry-points"
+    "postinstall": "ngcc --properties es2015 browser module main --first-only"
   },
   "private": true,
   "dependencies": {
@@ -26,9 +26,12 @@
     "@angular/forms": "~9.1.9",
     "@angular/localize": "^9.1.9",
     "@angular/material": "~9.2.4",
+    "@angular/material-moment-adapter": "~9.2.4",
     "@angular/platform-browser": "~9.1.9",
     "@angular/platform-browser-dynamic": "~9.1.9",
     "@angular/router": "~9.1.9",
+    "@mat-datetimepicker/core": "^4.1.0",
+    "@mat-datetimepicker/moment": "^4.1.0",
     "@ng-matero/extensions": "^9.5.1",
     "@ng-select/ng-select": "^4.0.0",
     "@ngx-formly/core": "^5.7.1",
@@ -37,6 +40,7 @@
     "@ngx-translate/http-loader": "~4.0.0",
     "apexcharts": "^3.18.1",
     "core-js": "^3.6.4",
+    "moment": "^2.18.1",
     "ngx-permissions": "^7.0.3",
     "ngx-progressbar": "^6.0.2",
     "ngx-toastr": "^12.1.0",

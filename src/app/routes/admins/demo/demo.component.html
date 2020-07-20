@@ -3,71 +3,42 @@
     <form [formGroup]="reactiveForm" class="form-field-full">
       <div class="matero-row" fxLayout="row wrap" fxLayoutAlign="start center">
         <ng-container *ngFor="let item of formModels;let idx = index">
-          <mat-form-field class="m-r-32" fxFlex="30" fxFlex.lt-lg="45" fxFlex.lt-sm="100">
-            <mat-label>{{item.name}}</mat-label>
-            <ng-container *ngIf="item.type === 'input'">
-              <label>
-                <input matInput [formControlName]="item.name" [id]="item.name" [placeholder]="item.name"
-                       [readonly]="item.readonly" name="{{item.name}}" [required]="item.required"/>
-              </label>
-            </ng-container>
-            <ng-container *ngIf="item.type === 'textarea'">
-              <label>
-                <textarea matInput [formControlName]="item.name" [id]="item.name" [placeholder]="item.name"
-                          [readonly]="item.readonly" name="{{item.name}}" [required]="item.required"></textarea>
-              </label>
-            </ng-container>
-            <ng-container *ngIf="item.selectOptions === 'select'">
-              <mat-select [formControlName]="item.name" [id]="item.name" [placeholder]="item.name"
-                          [readonly]="item.readonly" [required]="item.required">
-                <mat-option>-- None --</mat-option>
-                <ng-container *ngFor="let item of item.selectOptions;let idx = index">
-                  <mat-option value="1">male</mat-option>
-                </ng-container>
-              </mat-select>
-            </ng-container>
-            <ng-container *ngIf="item.type === 'datepicker'">
-              <mat-select [formControlName]="item.name" [id]="item.name" [placeholder]="item.name"
-                          [readonly]="item.readonly" [required]="item.required">
-                <mat-option>-- None --</mat-option>
-                <mat-option value="1">male</mat-option>
-                <mat-option value="2">female</mat-option>
-              </mat-select>
-            </ng-container>
-            <ng-container *ngIf="item.type === 'datepicker-range'">
-              <mat-select [formControlName]="item.name" [id]="item.name" [placeholder]="item.name"
-                          [readonly]="item.readonly" [required]="item.required">
-                <mat-option>-- None --</mat-option>
-                <mat-option value="1">male</mat-option>
-                <mat-option value="2">female</mat-option>
-              </mat-select>
-            </ng-container>
-            <ng-container *ngIf="item.type === 'datetimepicker'">
-              <mat-select [formControlName]="item.name" [id]="item.name" [placeholder]="item.name"
-                          [readonly]="item.readonly" [required]="item.required">
-                <mat-option>-- None --</mat-option>
-                <mat-option value="1">male</mat-option>
-                <mat-option value="2">female</mat-option>
-              </mat-select>
-            </ng-container>
-            <ng-container *ngIf="item.type === 'datetimepicker-range'">
-              <mat-select [formControlName]="item.name" [id]="item.name" [placeholder]="item.name"
-                          [readonly]="item.readonly" [required]="item.required">
-                <mat-option>-- None --</mat-option>
-                <mat-option value="1">male</mat-option>
-                <mat-option value="2">female</mat-option>
-              </mat-select>
-            </ng-container>
-            <ng-container *ngIf="item.type === 'tree'">
-              <mat-select [formControlName]="item.name" [id]="item.name" [placeholder]="item.name"
-                          [readonly]="item.readonly" [required]="item.required">
-                <mat-option>-- None --</mat-option>
-                <mat-option value="1">male</mat-option>
-                <mat-option value="2">female</mat-option>
-              </mat-select>
-            </ng-container>
-            <mat-error *ngIf="reactiveForm.get(item.name).invalid">
-              {{getErrorMessage(reactiveForm, item.name)}}</mat-error>
+          <mat-form-field *ngIf="item.type === 'input'" class="m-r-32" fxFlex="30" fxFlex.lt-lg="45" fxFlex.lt-sm="100">
+            <label>
+              <input matInput [formControlName]="item.name" [id]="item.name" [placeholder]="item.cnname"
+                     [readonly]="item.readonly" name="{{item.name}}" [required]="item.required"/>
+            </label>
+            <mat-error *ngIf="reactiveForm.get(item.name).invalid">{{getErrorMessage(item.name)}}</mat-error>
+          </mat-form-field>
+          <mat-form-field *ngIf="item.type === 'textarea'" class="m-r-32" fxFlex="30" fxFlex.lt-lg="45"
+                          fxFlex.lt-sm="100">
+            <label>
+              <input matInput [formControlName]="item.name" [id]="item.name" [placeholder]="item.cnname"
+                     [readonly]="item.readonly" name="{{item.name}}" [required]="item.required"/>
+            </label>
+            <mat-error *ngIf="reactiveForm.get(item.name).invalid">{{getErrorMessage(item.name)}}</mat-error>
+          </mat-form-field>
+          <mat-form-field *ngIf="item.type === 'datetime'" class="m-r-32" fxFlex="30" fxFlex.lt-lg="45"
+                          fxFlex.lt-sm="100">
+            <mat-datetimepicker-toggle [for]="jwinddatetimePicker" matSuffix></mat-datetimepicker-toggle>
+            <mat-datetimepicker #jwinddatetimePicker type="{{item.type}}" openOnFocus="true"
+                                timeInterval="5" [touchUi]="platform.ANDROID || platform.IOS"></mat-datetimepicker>
+            <label>
+              <input matInput [formControlName]="item.name" [matDatetimepicker]="jwinddatetimePicker"
+                     [required]="item.required" [placeholder]="item.cnname">
+            </label>
+            <mat-error *ngIf="reactiveForm.get(item.name).invalid">{{getErrorMessage(item.name)}}</mat-error>
+          </mat-form-field>
+          <mat-form-field *ngIf="item.selectOptions && item.selectOptions.length > 0" class="m-r-32" fxFlex="30"
+                          fxFlex.lt-lg="45" fxFlex.lt-sm="100">
+            <mat-select [formControlName]="item.name" [id]="item.name" [placeholder]="item.cnname"
+                        [readonly]="item.readonly" [required]="item.required">
+              <mat-option>-- None --</mat-option>
+              <ng-container *ngFor="let item of item.selectOptions;let idx = index">
+                <mat-option value="{{item.value}}">item.key</mat-option>
+              </ng-container>
+            </mat-select>
+            <mat-error *ngIf="reactiveForm.get(item.name).invalid">{{getErrorMessage(item.name)}}</mat-error>
           </mat-form-field>
         </ng-container>
       </div>

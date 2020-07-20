@@ -14,6 +14,7 @@ import {FormlyModule} from '@ngx-formly/core';
 import {ToastrModule} from 'ngx-toastr';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import {MAT_DATETIME_FORMATS} from '@mat-datetimepicker/core';
 
 export function StartupServiceFactory(startupService: StartupService) {
   return () => startupService.load();
@@ -65,6 +66,26 @@ export function TranslateLangServiceFactory(translateLangService: TranslateLangS
       useFactory: StartupServiceFactory,
       deps: [StartupService],
       multi: true,
+    },
+    {
+      provide: MAT_DATETIME_FORMATS, useValue: {
+        parse: {
+          dateInput: 'L',
+          monthInput: 'MMMM',
+          timeInput: 'LT',
+          datetimeInput: 'L LT'
+        },
+        display: {
+          dateInput: 'L',
+          monthInput: 'MMMM',
+          datetimeInput: 'L LT',
+          timeInput: 'LT',
+          monthYearLabel: 'MMM YYYY',
+          dateA11yLabel: 'LL',
+          monthYearA11yLabel: 'MMMM YYYY',
+          popupHeaderDateLabel: 'ddd, DD MMM'
+        }
+      }
     },
   ],
   bootstrap: [AppComponent],

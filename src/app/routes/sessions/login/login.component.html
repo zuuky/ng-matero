@@ -7,21 +7,21 @@
         <mat-form-field appearance="outline">
           <mat-label>{{'login.username' | translate}}: ng-matero</mat-label>
           <label>
-            <input formControlName="username" matInput placeholder="ng-matero" required>
+            <input formControlName="username" matInput placeholder="admin" required>
           </label>
           <mat-error *ngIf="username.invalid">
-            {{'login.please-enter' | translate}} <strong>ng-matero</strong>
+            {{'login.please-enter' | translate}} <strong>admin</strong>
           </mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="outline">
           <mat-label>{{'login.password' | translate}}: ng-matero</mat-label>
           <label>
-            <input formControlName="password" matInput placeholder="ng-matero"
+            <input formControlName="password" matInput placeholder="admin-pwd"
                    required type="password">
           </label>
           <mat-error *ngIf="password.invalid">
-            {{'login.please-enter' | translate}} <strong>ng-matero</strong>
+            {{'login.please-enter' | translate}} <strong>admin-pwd</strong>
           </mat-error>
         </mat-form-field>
 

@@ -13,3 +13,6 @@ export * from './interceptors/default.interceptor';
 // Authentication
 export * from './authentication/token.service';
 export * from './authentication/auth.guard';
+
+// jwind-interface
+export * from './interface';

@@ -1,5 +1,5 @@
-import {FormBuilder} from '@angular/forms';
-import {FormModel} from '../../routes/admins/demo/demo.component';
+import { FormBuilder } from '@angular/forms';
+import { FormModel } from '@core/interface';
 
 /**
  * 序列化 JSON，同时转义，删除两边空格
@@ -13,8 +13,8 @@ export function serialize(obj = {}) {
           ? String.prototype.trim.call(obj[k])
           : obj[k] === null
           ? ''
-          : obj[k]
-      )}`
+          : obj[k],
+      )}`,
     );
   }
   return arr.join('&');
@@ -25,14 +25,16 @@ export function serialize(obj = {}) {
  */
 export function delEmptyKey(obj: {}) {
   const objCpy = {};
-  if (obj === null || obj === undefined || obj === '') {
+  if (isEmptyObject(obj)) {
     return objCpy;
   }
   for (const key in obj) {
-    if (obj[key] !== null && typeof obj[key] === 'object') {
-      objCpy[key] = this.delEmptyKey(obj[key]);
-    } else if (obj[key] !== null && obj[key] !== undefined && obj[key] !== '') {
-      objCpy[key] = obj[key];
+    if (!isEmptyObject(obj[key])) {
+      if (typeof obj[key] === 'object') {
+        objCpy[key] = this.delEmptyKey(obj[key]);
+      } else {
+        objCpy[key] = obj[key];
+      }
     }
   }
   return objCpy;
@@ -42,12 +44,7 @@ export function delEmptyKey(obj: {}) {
  * 判断是否是空对象
  */
 export function isEmptyObject(obj: {}) {
-  let name: any;
-  // tslint:disable-next-line: forin
-  for (name in obj) {
-    return false;
-  }
-  return true;
+  return obj === null || obj === undefined || obj === '' || Object.keys(obj).length === 0;
 }
 
 /**
@@ -65,7 +62,6 @@ export function obj2Str(obj: any) {
   for (const key of Object.keys(obj)) {
     if (obj[key] || obj[key] === 0) {
       if (obj[key].toString() !== '') {
-        // 空数组排除
         p[key] = obj[key].toString();
       }
     }
@@ -102,9 +98,8 @@ export function formModelToFormGroup(formModels: FormModel[], formBuilder: FormB
   for (const model of formModels) {
     group[model.name] = model.disabled ? [{
       value: null,
-      disabled: true
+      disabled: true,
     }, model.validators] : [null, model.validators];
   }
   return formBuilder.group(group);
 }
-

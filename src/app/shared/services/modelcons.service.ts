@@ -18,5 +18,4 @@ export class ModelConsService {
   static REGISTER_URL = '/' + ModelConsService.AUTH + '/' + ModelConsService.REGISTER;
   static ERROR_404 = '/404';
   static ERROR_500 = '/500';
-
 }

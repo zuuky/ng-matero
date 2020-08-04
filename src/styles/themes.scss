@@ -36,9 +36,13 @@ $config: mat-typography-config();
 //
 // Matero theme
 //
-@import 'app/theme/style/theming';
+@import '~app/theme/style/theming';
 
 @include matero-admin-theme($theme);
+
+@import '~@mat-datetimepicker/core/datetimepicker/datetimepicker-theme.scss';
+
+@include mat-datetimepicker-theme($theme);
 
 //
 // Demo purpose only
@@ -51,4 +55,5 @@ $config: mat-typography-config();
 
   @include angular-material-theme($theme);
   @include matero-admin-theme($theme);
+  @include mat-datetimepicker-theme($theme);
 }

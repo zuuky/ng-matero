@@ -44,7 +44,7 @@ export class LoginComponent implements OnInit {
     this._token.set({token: 'ng-matero-token'});
     // Regain the initial data
     this._startup.load().then(() => {
-      this._router.navigateByUrl('/');
+      this._router.navigateByUrl('/').then();
     });
   }
 
@@ -53,7 +53,7 @@ export class LoginComponent implements OnInit {
       SettingsService.setUser({name: this.username.value});
       this._token.set({token: res.data});
       this._startup.load().then(() => {
-        this._router.navigateByUrl('/');
+        this._router.navigateByUrl('/').then();
       });
     });
   }

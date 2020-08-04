@@ -1,0 +1,23 @@
+.tree-overlay {
+  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, .2), 0 4px 5px 0 rgba(0, 0, 0, .14), 0 1px 10px 0 rgba(0, 0, 0, .12)
+}
+
+.tree-backdrop {
+  opacity: -2;
+}
+
+.cdk-date-time {
+  font-size: 30px;
+  font-weight: bold;
+  line-height: 80px;
+}
+
+.cdk-overlay-container .mat-datetimepicker-content {
+  .mat-datetimepicker-calendar-header-date-time {
+    @extend .cdk-date-time;
+  }
+
+  .mat-datetimepicker-calendar-header-year {
+    @extend .cdk-date-time;
+  }
+}

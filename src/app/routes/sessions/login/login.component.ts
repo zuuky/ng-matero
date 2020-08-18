@@ -1,9 +1,9 @@
-import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {Router} from '@angular/router';
-import {SettingsService, StartupService, TokenService} from '@core';
-import {ModelConsService} from '@shared/services/modelcons.service';
-import {HttpService} from '@shared/services/http.service';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { SettingsService, StartupService, TokenService } from '@core';
+import { ModelConsService } from '@shared/services/modelcons.service';
+import { HttpService } from '@shared/services/http.service';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
     private _router: Router,
     private _token: TokenService,
     private _startup: StartupService,
-    private _http: HttpService
+    private _http: HttpService,
   ) {
     this.loginForm = this._fb.group({
       username: ['', [Validators.required, Validators.pattern('admin')]],
@@ -39,9 +39,9 @@ export class LoginComponent implements OnInit {
 
   loginBak() {
     // Set user info
-    SettingsService.setUser({name: this.username.value});
+    SettingsService.setUser({ name: this.username.value });
     // Set token info
-    this._token.set({token: 'ng-matero-token'});
+    this._token.set({ token: 'ng-matero-token' });
     // Regain the initial data
     this._startup.load().then(() => {
       this._router.navigateByUrl('/').then();
@@ -49,9 +49,9 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this._http.post(ModelConsService.LOGIN_URL, this.loginForm.value).subscribe((res: any) => {
-      SettingsService.setUser({name: this.username.value});
-      this._token.set({token: res.data});
+    this._http.post(ModelConsService.LOGIN_URL, this.loginForm.value, (res: any) => {
+      SettingsService.setUser({ name: this.username.value });
+      this._token.set({ token: res.data });
       this._startup.load().then(() => {
         this._router.navigateByUrl('/').then();
       });

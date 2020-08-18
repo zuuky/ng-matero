@@ -1,26 +1,37 @@
 import { AsyncValidatorFn, ValidatorFn } from '@angular/forms';
+import { MtxGridColumn } from '@ng-matero/extensions';
 
-export interface FormModel {
-  name: string;
-  cnname: string;
-  type?: 'input' | 'textarea' | 'select' | 'tree' | 'autocomplete' | 'datetime' | 'date' | 'month';
+export interface FormModel extends MtxGridColumn {
+  fieldType?: 'input' | 'textarea' | 'select' | 'tree' | 'autocomplete' | 'datetime' | 'date' | 'month';
   autocomplete?: true | false;
   autocompleteOptions?: string[];
   selectOptions?: SelectOptions[];
-  treeOptions?: { [key: string]: {} };
-  treeSelectedOptions?: string[];
   multiple?: true | false;
   required?: true | false;
   disabled?: true | false;
   readonly?: true | false;
-  overlayOpen?: true | false;
   validators?: ValidatorFn | ValidatorFn[];
   asyncValidators?: AsyncValidatorFn | AsyncValidatorFn[];
+  overlayOpen?: true | false;
+  treeOptions?: { [key: string]: {} };
+  treeSelectedOptions?: string[];
+  isSearch?: true | false;
+  searchInitDatasCallback?: (response) => void;
 }
 
 export interface SelectOptions {
   key: string;
   value: string;
+}
+
+export interface ActionOptions {
+  selectCallback?: any;
+  unSelectCallback?: any;
+  delUrl?: string;
+  editUrl?: string;
+  addUrl?: string;
+  selectUrl?: string;
+  primaryFieldAlias?: string;
 }
 
 

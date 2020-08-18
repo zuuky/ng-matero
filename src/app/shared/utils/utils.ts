@@ -1,6 +1,3 @@
-import { FormBuilder } from '@angular/forms';
-import { FormModel } from '@core/interface';
-
 /**
  * 序列化 JSON，同时转义，删除两边空格
  */
@@ -44,7 +41,7 @@ export function delEmptyKey(obj: {}) {
  * 判断是否是空对象
  */
 export function isEmptyObject(obj: {}) {
-  return obj === null || obj === undefined || obj === '' || Object.keys(obj).length === 0;
+  return obj === null || obj === undefined || obj === '';
 }
 
 /**
@@ -88,18 +85,4 @@ export function getScrollbarWidth() {
   document.body.removeChild(scrollDiv);
 
   return scrollbarWidth;
-}
-
-/**
- * formModelToFormGroup
- */
-export function formModelToFormGroup(formModels: FormModel[], formBuilder: FormBuilder) {
-  const group = {};
-  for (const model of formModels) {
-    group[model.name] = model.disabled ? [{
-      value: null,
-      disabled: true,
-    }, model.validators] : [null, model.validators];
-  }
-  return formBuilder.group(group);
 }

@@ -3,7 +3,6 @@
     <mat-card-title class="text-center m-b-24">{{'login.title' | translate}}!</mat-card-title>
     <mat-card-content>
       <form [formGroup]="loginForm" class="form-field-full">
-
         <mat-form-field appearance="outline">
           <mat-label>{{'login.username' | translate}}: ng-matero</mat-label>
           <label>
@@ -18,7 +17,7 @@
           <mat-label>{{'login.password' | translate}}: ng-matero</mat-label>
           <label>
             <input formControlName="password" matInput placeholder="admin-pwd"
-                   required type="password">
+                   required type="password" autocomplete="password">
           </label>
           <mat-error *ngIf="password.invalid">
             {{'login.please-enter' | translate}} <strong>admin-pwd</strong>

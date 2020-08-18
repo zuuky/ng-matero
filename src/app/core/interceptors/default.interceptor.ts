@@ -1,4 +1,4 @@
-import {Injectable, Injector} from '@angular/core';
+import { Injectable, Injector } from '@angular/core';
 import {
   HttpErrorResponse,
   HttpEvent,
@@ -8,12 +8,12 @@ import {
   HttpResponse,
 } from '@angular/common/http';
 
-import {Observable, of} from 'rxjs';
-import {catchError, mergeMap} from 'rxjs/operators';
-import {Router} from '@angular/router';
-import {ModelConsService} from '@shared/services/modelcons.service';
-import {LocalStorageService} from '@shared/services/storage.service';
-import {environment} from '@env/environment';
+import { Observable, of } from 'rxjs';
+import { catchError, mergeMap } from 'rxjs/operators';
+import { Router } from '@angular/router';
+import { ModelConsService } from '@shared/services/modelcons.service';
+import { LocalStorageService } from '@shared/services/storage.service';
+import { environment } from '@env/environment';
 
 /** Pass untouched request through to the next request handler. */
 @Injectable()
@@ -23,20 +23,21 @@ export class DefaultInterceptor implements HttpInterceptor {
 
   static handleData(data: HttpResponse<any>): Observable<any> {
     return of(data.clone({
-      body: data.body
+      body: data.body,
     }));
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     let url = req.url;
+    let reqClone = req;
     if (!url.startsWith('https://') && !url.startsWith('http://') && !url.startsWith('./assets/') && !url.startsWith('assets/')) {
       url = environment.SERVER_URL + url;
+      reqClone = req.clone({
+        url, setHeaders: {
+          Authorization: 'Bearer ' + LocalStorageService.get(ModelConsService.TOKEN_KEY).token,
+        },
+      });
     }
-    const reqClone = req.clone({
-      url, setHeaders: {
-        Authorization: 'Bearer ' + LocalStorageService.get(ModelConsService.TOKEN_KEY).token
-      },
-    });
 
     return next.handle(reqClone).pipe(
       mergeMap((event: any) => {
@@ -47,7 +48,7 @@ export class DefaultInterceptor implements HttpInterceptor {
       }),
       catchError((err: HttpErrorResponse) => {
         return this.handleError(err);
-      })
+      }),
     );
   }
 

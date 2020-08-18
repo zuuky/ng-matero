@@ -1,0 +1,24 @@
+<mat-card class="mat-elevation-z1" style="margin-top: 36px">
+  <mtx-grid [data]="datas"
+            [columns]="columns"
+            [length]="total"
+            [loading]="isLoading"
+            [showPaginator]="showPaginator"
+            [pageOnFront]="false"
+            [pageSizeOptions]="pageSizeOptions"
+            (page)="pageEvent.emit($event)"
+            [trackBy]="trackByIdMtxGrid"
+            [expandable]="expansionTemplate !== undefined"
+            [expansionTemplate]="expansionTemplate"
+            (expansionChange)="expansionEvent.emit($event)"
+            (cellSelectionChange)="cellSelectionEvent.emit($event)"
+            [showToolbar]="toolbarTemplate !== undefined"
+            [toolbarTemplate]="toolbarTemplate"
+            [columnHideable]="true"
+            [columnMovable]="true"
+            [rowHover]="true"
+            [cellTemplate]="cellTemplateMappings"
+            [showSummary]="summaryCellTemplateMappings !== undefined"
+            [summaryTemplate]="summaryCellTemplateMappings">
+  </mtx-grid>
+</mat-card>

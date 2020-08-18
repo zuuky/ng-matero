@@ -1,19 +1,7 @@
-import {
-  AfterViewInit,
-  ChangeDetectorRef,
-  Component,
-  ElementRef,
-  OnInit,
-  Renderer2,
-  ViewChildren,
-} from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { formModelToFormGroup } from '@shared/utils/utils';
-import { Platform } from '@angular/cdk/platform';
-import { MAT_DATETIME_FORMATS } from '@mat-datetimepicker/core';
-import * as moment from 'moment';
-import { FormModel, JwindDateFormat, ValidErrorRemark } from '@core/interface';
-import { SelectTreeComponent } from '../select-tree/select-tree.component';
+import { Component, OnInit } from '@angular/core';
+import { FormModel } from '@core/interface';
+import { HttpService } from '@shared/services/http.service';
+import { serialize } from '@shared';
 
 /**
  * The Json object for to-do list data.
@@ -40,122 +28,88 @@ const TREE_DATA = {
   selector: 'admins-demo',
   templateUrl: './demo.component.html',
   styleUrls: ['./demo.component.scss'],
-  providers: [{
-    provide: MAT_DATETIME_FORMATS, useValue: {
-      parse: {
-        dateInput: JwindDateFormat.date,
-        monthInput: JwindDateFormat.month,
-        datetimeInput: JwindDateFormat.datetime,
-      },
-      display: {
-        dateInput: JwindDateFormat.date,
-        monthInput: JwindDateFormat.month,
-        datetimeInput: JwindDateFormat.datetime,
-        popupHeaderDateLabel: JwindDateFormat.popupHeaderDateLabel,
-      },
-    },
-  },
-  ],
 })
 
-export class DemoComponent implements OnInit, AfterViewInit {
+export class DemoComponent implements OnInit {
+
+  demoDownloadUrl = 'download';
+  demoSelectUrl = 'https://api.github.com/search/repositories?q=user:nzbin';
+  demoDelUrl = 'delete';
 
   formModels: FormModel[] = [
     {
-      name: 'username', cnname: 'input测试', type: 'input',
+      header: 'Name',
+      field: 'name',
+      formatter: (data: any) => `<a href="${data.html_url}" target="_blank">${data.name}</a>`,
     },
+    { header: 'Owner', field: 'owner.login', fieldType: 'input', isSearch: true },
+    { header: 'Owner Avatar', field: 'owner.avatar_url', type: 'image', fieldType: 'input', required: true },
+    { header: 'Description', field: 'description', width: '300px', fieldType: 'input' },
+    { header: 'Stars', field: 'stargazers_count', fieldType: 'input' },
+    { header: 'Forks', field: 'forks_count', fieldType: 'input' },
+    { header: 'Score', field: 'score', fieldType: 'input', required: true },
+    { header: 'Issues', field: 'open_issues', fieldType: 'input', required: true, isSearch: true },
+    { header: 'Language', field: 'language', fieldType: 'input', required: true },
+    { header: 'License', field: 'license.name', fieldType: 'input', required: true, isSearch: true },
+    { header: 'Home Page', field: 'homepage', type: 'link', fieldType: 'input', required: true },
+    { header: 'Is forked', field: 'fork', type: 'boolean', fieldType: 'input', required: true },
     {
-      name: 'email', cnname: 'textarea测试', type: 'textarea',
+      header: 'Archived',
+      field: 'archived',
+      type: 'tag',
+      tag: {
+        true: { text: 'Yes', color: 'red-100' },
+        false: { text: 'No', color: 'green-100' },
+      }, fieldType: 'input', required: true,
     },
-    {
-      name: 'selectMultiple',
-      type: 'select',
-      cnname: '下拉框多选测试', selectOptions: [{ key: 'aa', value: '1' }, { key: 'bb', value: '2' }],
-      multiple: true,
-    },
-    {
-      name: 'select',
-      type: 'select',
-      cnname: '下拉框测试', selectOptions: [{ key: 'aa', value: '1' }, { key: 'bb', value: '2' }],
-    },
-    {
-      name: 'autocomplete',
-      type: 'autocomplete',
-      cnname: 'autocomplete测试',
-      autocompleteOptions: ['aa', 'bb'],
-    },
-    {
-      name: 'datetime', cnname: '日期测试', type: 'datetime', required: true, readonly: true,
-    }, {
-      name: 'treeMultiple',
-      cnname: 'TreeMultiple测试',
-      type: 'tree',
-      readonly: true,
-      required: true,
-      multiple: true,
-      treeOptions: TREE_DATA,
-      treeSelectedOptions: ['Berries', 'Blueberry', 'Raspberry'],
-    }, {
-      name: 'tree', cnname: 'Tree测试', type: 'tree', required: true, readonly: true, treeOptions: TREE_DATA,
-    }];
+    { header: 'Created Date', field: 'created_at', fieldType: 'date', required: true },
+    { header: 'Updated Date', field: 'updated_at', fieldType: 'datetime', required: true, isSearch: true },
+  ];
 
-  reactiveForm: FormGroup;
+  /*grid表格查询条件*/
+  searchFilter: any = {};
+  /*grid表格数据*/
+  datas = [];
+  /*grid表格数据总数*/
+  total = 0;
 
-  constructor(private formBuilder: FormBuilder, private elref: ElementRef, private render: Renderer2,
-              private cdr: ChangeDetectorRef, public platform: Platform) {
-    this.reactiveForm = formModelToFormGroup(this.formModels, this.formBuilder);
+  constructor(public httpService: HttpService) {
   }
-
-  @ViewChildren(SelectTreeComponent)
-  trees: SelectTreeComponent[];
 
   ngOnInit() {
+    this.selectEvent(this.searchFilter);
   }
 
-  getErrorMessage(fieldName) {
-    const errors = this.reactiveForm.get(fieldName).errors;
-    for (const key in ValidErrorRemark) {
-      if (key in errors) {
-        // noinspection JSUnfilteredForInLoop
-        return ValidErrorRemark[key];
-      }
+  selectEvent($event: any) {
+    if (!$event.pageIndex && !$event.pageSize) {
+      $event.pageIndex = 0;
+      $event.pageSize = 10;
+      $event.page = $event.pageIndex;
+      $event.per_page = $event.pageSize;
     }
-  }
-
-  buildTreeValue(item: FormModel, value: any) {
-    if (!item.multiple) {
-      item.overlayOpen = false;
-    }
-    this.reactiveForm.get(item.name).setValue(value);
-    this.cdr.detectChanges();
-  }
-
-  dateFormatEvent(type, event) {
-    event.toJSON = function() {
-      return moment(this).format(JwindDateFormat[type]);
-    };
-  }
-
-  submitSearch() {
-    console.log(JSON.stringify(this.reactiveForm.value, (key, value) => {
-      return value ? value : undefined;
+    this.httpService.get(this.demoSelectUrl, $event, (res => {
+      this.datas = res.items;
+      this.total = res.total_count;
     }));
   }
 
-  reset() {
-    this.reactiveForm.reset();
-    this.trees.forEach(value => value.checklistSelection.clear());
+  pageEvent($event) {
+    this.searchFilter.pageIndex = $event.pageIndex;
+    this.searchFilter.pageSize = $event.pageSize;
+    this.searchFilter.page = $event.pageIndex;
+    this.searchFilter.per_page = $event.pageSize;
+    this.selectEvent(this.searchFilter);
   }
 
-  submitDownload() {
-    console.log(JSON.stringify(this.reactiveForm.value, (key, value) => {
-      return value ? value : undefined;
-    }));
+  downloadEvent($event: any) {
+    this.httpService.download($event ? this.demoDownloadUrl + '?' + serialize($event) : this.demoDownloadUrl);
   }
 
-  ngAfterViewInit(): void {
-    this.cdr.detectChanges();
+  delEvent($event: any) {
+    this.httpService.post(this.demoDelUrl, { id: $event.id });
   }
 
-
+  editOrCopyAddEvent($event: any) {
+    console.log($event);
+  }
 }

@@ -18,6 +18,7 @@ import { DateAdapter, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MomentDateAdapter } from '@angular/material-moment-adapter';
 
 import 'moment/locale/zh-cn';
+import { MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
 
 export function StartupServiceFactory(startupService: StartupService) {
   return () => startupService.load();
@@ -75,6 +76,14 @@ export function TranslateLangServiceFactory(translateLangService: TranslateLangS
       provide: DateAdapter,
       useFactory: MomentDateAdapter,
       deps: [MAT_DATE_LOCALE],
+    },
+    {
+      provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {
+        duration: 1500,
+        horizontalPosition: 'center',
+        verticalPosition: 'top',
+        panelClass: ['jwind-snackbar'],
+      },
     },
   ],
   bootstrap: [AppComponent],

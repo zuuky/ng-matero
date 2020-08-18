@@ -1,0 +1,138 @@
+<h2 mat-dialog-title fxLayoutAlign="center center">Data Update</h2>
+<mat-dialog-content class="mat-typography">
+  <form [formGroup]="reactiveForm" class="form-field-full">
+    <div class="matero-row" fxLayout="row wrap" fxLayoutAlign="start center">
+      <ng-container *ngFor="let item of models">
+        <!-- input -->
+        <mat-form-field *ngIf="item.fieldType === 'input'" class="m-r-32" fxFlex="30" fxFlex.lt-lg="42"
+                        fxFlex.lt-sm="100">
+          <label>
+            <input matInput [formControlName]="item.field" [id]="item.field" [placeholder]="item.header"
+                   [readonly]="item.readonly" name="{{item.field}}"
+                   [required]="item.required"/>
+          </label>
+          <button mat-button *ngIf="reactiveForm.get(item.field) && reactiveForm.get(item.field).value" matSuffix
+                  mat-icon-button
+                  aria-label="Clear"
+                  (click)="reactiveForm.get(item.field).reset()">
+            <mat-icon>close</mat-icon>
+          </button>
+          <mat-error
+            *ngIf="reactiveForm.get(item.field) && reactiveForm.get(item.field).invalid">{{formService.getFormErrorMessage(reactiveForm, item.field)}}</mat-error>
+        </mat-form-field>
+        <!-- textarea -->
+        <mat-form-field *ngIf="item.fieldType === 'textarea'" class="m-r-32" fxFlex="30" fxFlex.lt-lg="42"
+                        fxFlex.lt-sm="100">
+          <label>
+              <textarea matInput [formControlName]="item.field" [id]="item.field"
+                        [placeholder]="item.header" [readonly]="item.readonly" name="{{item.field}}"
+                        [required]="item.required"></textarea>
+          </label>
+          <button mat-button *ngIf="reactiveForm.get(item.field) && reactiveForm.get(item.field).value" matSuffix
+                  mat-icon-button aria-label="Clear"
+                  (click)="reactiveForm.get(item.field).reset()">
+            <mat-icon>close</mat-icon>
+          </button>
+          <mat-error
+            *ngIf="reactiveForm.get(item.field) && reactiveForm.get(item.field).invalid">{{formService.getFormErrorMessage(reactiveForm, item.field)}}</mat-error>
+        </mat-form-field>
+        <!-- datetime data month -->
+        <mat-form-field
+          *ngIf="item.fieldType === 'datetime' || item.fieldType === 'date' || item.fieldType === 'month'"
+          class="m-r-32" fxFlex="30" fxFlex.lt-lg="42" fxFlex.lt-sm="100">
+          <mat-datetimepicker-toggle [for]="dtpicker" matSuffix></mat-datetimepicker-toggle>
+          <mat-datetimepicker #dtpicker type="{{item.fieldType}}" timeInterval="5"
+                              (selectedChanged)="formService.dateFormatEvent(item.fieldType,$event)"
+                              [touchUi]="platform.ANDROID || platform.IOS" mode="auto"></mat-datetimepicker>
+          <label>
+            <input matInput [formControlName]="item.field" [matDatetimepicker]="dtpicker"
+                   (click)="dtpicker.open()"
+                   [required]="item.required" [id]="item.field" name="{{item.field}}"
+                   [placeholder]="item.header"
+                   [readonly]="item.readonly">
+          </label>
+          <button mat-button *ngIf="reactiveForm.get(item.field) && reactiveForm.get(item.field).value" matSuffix
+                  mat-icon-button aria-label="Clear"
+                  (click)="reactiveForm.get(item.field).reset()">
+            <mat-icon>close</mat-icon>
+          </button>
+          <mat-error
+            *ngIf="reactiveForm.get(item.field) && reactiveForm.get(item.field).invalid">{{formService.getFormErrorMessage(reactiveForm, item.field)}}</mat-error>
+        </mat-form-field>
+        <!-- select -->
+        <mat-form-field
+          *ngIf="item.fieldType === 'select' && item.selectOptions && item.selectOptions.length > 0"
+          class="m-r-32" fxFlex="30" fxFlex.lt-lg="42" fxFlex.lt-sm="100">
+          <mat-select [formControlName]="item.field" [id]="item.field" [placeholder]="item.header"
+                      [required]="item.required" [multiple]="item.multiple">
+            <ng-container *ngFor="let item of item.selectOptions">
+              <mat-option value="{{item.value}}">{{item.key}}</mat-option>
+            </ng-container>
+          </mat-select>
+          <button mat-button *ngIf="reactiveForm.get(item.field) && reactiveForm.get(item.field).value" matSuffix
+                  mat-icon-button aria-label="Clear"
+                  (click)="reactiveForm.get(item.field).reset()">
+            <mat-icon>close</mat-icon>
+          </button>
+          <mat-error
+            *ngIf="reactiveForm.get(item.field) && reactiveForm.get(item.field).invalid">{{formService.getFormErrorMessage(reactiveForm, item.field)}}</mat-error>
+        </mat-form-field>
+        <!-- autocomplete -->
+        <mat-form-field *ngIf="item.fieldType === 'autocomplete' && item.autocompleteOptions &&
+          item.autocompleteOptions.length > 0" class="m-r-32" fxFlex="30" fxFlex.lt-lg="42" fxFlex.lt-sm="100">
+          <label>
+            <input matInput [formControlName]="item.field" [id]="item.field" [placeholder]="item.header"
+                   [readonly]="item.readonly" name="{{item.field}}"
+                   [required]="item.required" [matAutocomplete]="auto"/>
+          </label>
+          <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+            <ng-container *ngFor="let option of item.autocompleteOptions">
+              <mat-option [value]="option">{{option}}</mat-option>
+            </ng-container>
+          </mat-autocomplete>
+          <button mat-button *ngIf="reactiveForm.get(item.field) && reactiveForm.get(item.field).value" matSuffix
+                  mat-icon-button aria-label="Clear"
+                  (click)="reactiveForm.get(item.field).reset()">
+            <mat-icon>close</mat-icon>
+          </button>
+          <mat-error
+            *ngIf="reactiveForm.get(item.field) && reactiveForm.get(item.field).invalid">{{formService.getFormErrorMessage(reactiveForm, item.field)}}</mat-error>
+        </mat-form-field>
+        <!-- tree -->
+        <mat-form-field *ngIf="item.fieldType === 'tree'" class="m-r-32" fxFlex="30" fxFlex.lt-lg="42"
+                        fxFlex.lt-sm="100">
+          <label>
+            <input matInput [formControlName]="item.field" [id]="item.field" [placeholder]="item.header"
+                   [readonly]="item.readonly" name="{{item.field}}"
+                   (click)="item.overlayOpen = !item.overlayOpen"
+                   cdkOverlayOrigin #overlayOrigin="cdkOverlayOrigin"
+                   [required]="item.required"/>
+          </label>
+          <app-select-tree #tree [overlayOrigin]="overlayOrigin" [model]="item"
+                           (selections)="formService.buildTreeValue(reactiveForm,item,$event)"></app-select-tree>
+          <button mat-button *ngIf="reactiveForm.get(item.field) && reactiveForm.get(item.field).value" matSuffix
+                  mat-icon-button aria-label="Clear"
+                  (click)="reactiveForm.get(item.field).reset();tree.checklistSelection.clear();">
+            <mat-icon>close</mat-icon>
+          </button>
+          <mat-error
+            *ngIf="reactiveForm.get(item.field) && reactiveForm.get(item.field).invalid">{{formService.getFormErrorMessage(reactiveForm, item.field)}}</mat-error>
+        </mat-form-field>
+      </ng-container>
+    </div>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions fxLayoutAlign="end center">
+  <button color="primary" mat-raised-button class="m-r-16"
+          (click)="dialogRef.close(reactiveForm.value)"
+          [disabled]="reactiveForm.invalid">
+    submit
+  </button>
+  <button color="primary" mat-raised-button class="m-r-16" (click)="reset()">
+    Reset
+  </button>
+  <button color="primary" mat-raised-button class="m-r-16"
+          (click)="dialogRef.close()">
+    cancel
+  </button>
+</mat-dialog-actions>

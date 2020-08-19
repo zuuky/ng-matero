@@ -1,17 +1,21 @@
+/* tree */
 .tree-overlay {
   box-shadow: 0 2px 4px -1px rgba(0, 0, 0, .2), 0 4px 5px 0 rgba(0, 0, 0, .14), 0 1px 10px 0 rgba(0, 0, 0, .12)
 }
 
+/* tree */
 .tree-backdrop {
   opacity: -2;
 }
 
+/* datetime */
 .cdk-date-time {
   font-size: 20px;
   font-weight: bold;
   line-height: 80px;
 }
 
+/* datetime */
 .cdk-overlay-container .mat-datetimepicker-content {
   .mat-datetimepicker-calendar-header-date-time {
     @extend .cdk-date-time;
@@ -22,12 +26,35 @@
   }
 }
 
+/* mat-snackbar */
+.cdk-overlay-container .mat-snack-bar-container {
+  max-width: 300px;
+  min-width: 300px;
+  min-height: 32px;
+  max-height: 32px;
+  padding: 5px 14px;
+}
+
+
+/* mat-snackbar */
 .cdk-overlay-container .mat-snack-bar-container .mat-simple-snackbar {
   justify-content: center;
   font-size: 20px;
   color: white;
 }
 
+/* mat-snackbar */
 .jwind-snackbar {
   background-color: #4caf50;
+}
+
+/* alert dialog */
+.cdk-overlay-container .cdk-overlay-pane {
+  .mtx-dialog-title {
+    text-align: center;
+  }
+
+  .mtx-dialog-actions {
+    justify-content: space-around;
+  }
 }

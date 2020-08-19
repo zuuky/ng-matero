@@ -1,5 +1,5 @@
 import {
-  AfterViewChecked,
+  AfterViewChecked, ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   EventEmitter,
@@ -36,6 +36,7 @@ import { FormService } from '@shared/services/form.service';
     },
   },
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EditFormComponent implements OnInit, AfterViewChecked {
 

@@ -3,9 +3,12 @@
     <app-search-form [models]="formModels" (searchFilterEvent)="searchFilter = $event"
                      (selectEvent)="selectEvent($event)"
                      (downloadEvent)="downloadEvent($event)"></app-search-form>
-    <mat-divider style="margin-top: 10px"></mat-divider>
-    <app-mtx-grid [columns]="formModels" [total]="total" [datas]="datas" (delEvent)="delEvent($event)"
-                  [isLoading]="httpService._isLoading.value" (pageEvent)="pageEvent($event)"
-                  (editOrCopyAddEvent)="editOrCopyAddEvent($event)"></app-mtx-grid>
+    <mat-divider fxHide.lt-sm class="m-t-10"></mat-divider>
+    <app-file-upload fxHide.lt-sm></app-file-upload>
+    <mat-divider class="m-t-10"></mat-divider>
+    <app-mtx-grid [columns]="formModels" [total]="total" [datas]="datas"
+                  [isLoading]="httpService._isLoading.asObservable() | async"
+                  (pageEvent)="pageEvent($event)" (addEvent)=addEvent($event)
+                  (editEvent)=editEvent($event) (delEvent)="delEvent($event)"></app-mtx-grid>
   </mat-card>
 </div>

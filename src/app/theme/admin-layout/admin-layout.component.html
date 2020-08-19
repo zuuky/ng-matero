@@ -9,7 +9,7 @@
   <ng-progress></ng-progress>
 
   <!-- Header Above -->
-  <app-header #header (toggleSidenav)="sidenav.toggle()"
+  <app-header (toggleSidenav)="sidenav.toggle()"
               (toggleSidenavNotice)="sidenavNotice.toggle()"
               *ngIf="options.showHeader && options.headerPos==='above'"
               [showBranding]="true"
@@ -35,7 +35,7 @@
     </mat-sidenav>
 
     <mat-sidenav-content #content class="matero-content-wrap">
-      <app-header #header (toggleSidenav)="sidenav.toggle()"
+      <app-header (toggleSidenav)="sidenav.toggle()"
                   (toggleSidenavNotice)="sidenavNotice.toggle()"
                   *ngIf="options.showHeader && options.headerPos!=='above'"
                   [showBranding]="options.navPos==='top'"
@@ -44,6 +44,8 @@
       </app-header>
 
       <app-topmenu *ngIf="options.navPos==='top'"></app-topmenu>
+
+      <app-reuse-tab fxHide.lt-sm></app-reuse-tab>
 
       <div class="matero-content">
         <router-outlet></router-outlet>

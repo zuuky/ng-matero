@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormModel } from '@core/interface';
+import { DatetimeFormModel, FormModel, InputFormModel } from '@core/interface';
 import { HttpService } from '@shared/services/http.service';
 import { serialize } from '@shared';
 
@@ -32,38 +32,38 @@ const TREE_DATA = {
 
 export class DemoComponent implements OnInit {
 
-  demoDownloadUrl = 'download';
   demoSelectUrl = 'https://api.github.com/search/repositories?q=user:nzbin';
-  demoDelUrl = 'delete';
+  demoDownloadUrl = 'download';
+  demoDeleteUrl = 'delete';
+  demoAddUrl = 'add';
+  demoEditUrl = 'edit';
 
   formModels: FormModel[] = [
-    {
-      header: 'Name',
-      field: 'name',
+    Object.assign(new InputFormModel('Name', 'name'), {
       formatter: (data: any) => `<a href="${data.html_url}" target="_blank">${data.name}</a>`,
-    },
-    { header: 'Owner', field: 'owner.login', fieldType: 'input', isSearch: true },
-    { header: 'Owner Avatar', field: 'owner.avatar_url', type: 'image', fieldType: 'input', required: true },
-    { header: 'Description', field: 'description', width: '300px', fieldType: 'input' },
-    { header: 'Stars', field: 'stargazers_count', fieldType: 'input' },
-    { header: 'Forks', field: 'forks_count', fieldType: 'input' },
-    { header: 'Score', field: 'score', fieldType: 'input', required: true },
-    { header: 'Issues', field: 'open_issues', fieldType: 'input', required: true, isSearch: true },
-    { header: 'Language', field: 'language', fieldType: 'input', required: true },
-    { header: 'License', field: 'license.name', fieldType: 'input', required: true, isSearch: true },
-    { header: 'Home Page', field: 'homepage', type: 'link', fieldType: 'input', required: true },
-    { header: 'Is forked', field: 'fork', type: 'boolean', fieldType: 'input', required: true },
-    {
-      header: 'Archived',
-      field: 'archived',
+    }),
+    Object.assign(new InputFormModel('Owner', 'owner.login'), { isSearch: true }),
+    Object.assign(new InputFormModel('Owner Avatar', 'owner.avatar_url'), {
+      type: 'image', isSearch: true, required: true,
+    }),
+    Object.assign(new InputFormModel('Description', 'description')),
+    Object.assign(new InputFormModel('Stars', 'stargazers_count')),
+    Object.assign(new InputFormModel('Forks', 'forks_count')),
+    Object.assign(new InputFormModel('Score', 'score'), { required: true }),
+    Object.assign(new InputFormModel('Issues', 'open_issues'), { required: true, isSearch: true }),
+    Object.assign(new InputFormModel('Language', 'language'), { required: true }),
+    Object.assign(new InputFormModel('License', 'license.name'), { required: true, isSearch: true }),
+    Object.assign(new InputFormModel('Home Page', 'homepage'), { required: true, isSearch: true, type: 'link' }),
+    Object.assign(new InputFormModel('Forked', 'fork'), { required: true, isSearch: true, type: 'boolean' }),
+    Object.assign(new InputFormModel('Archived', 'archived'), {
       type: 'tag',
       tag: {
         true: { text: 'Yes', color: 'red-100' },
         false: { text: 'No', color: 'green-100' },
       }, fieldType: 'input', required: true,
-    },
-    { header: 'Created Date', field: 'created_at', fieldType: 'date', required: true },
-    { header: 'Updated Date', field: 'updated_at', fieldType: 'datetime', required: true, isSearch: true },
+    }),
+    Object.assign(new DatetimeFormModel('Created Date', 'created_at'), { required: true, isSearch: true }),
+    Object.assign(new DatetimeFormModel('Updated Date', 'updated_at'), { required: true, isSearch: true }),
   ];
 
   /*grid表格查询条件*/
@@ -106,10 +106,14 @@ export class DemoComponent implements OnInit {
   }
 
   delEvent($event: any) {
-    this.httpService.post(this.demoDelUrl, { id: $event.id });
+    this.httpService.post(this.demoDeleteUrl, { id: $event.id });
   }
 
-  editOrCopyAddEvent($event: any) {
-    console.log($event);
+  addEvent($event: any) {
+    this.httpService.post(this.demoAddUrl, $event);
+  }
+
+  editEvent($event: any) {
+    this.httpService.post(this.demoEditUrl, $event);
   }
 }

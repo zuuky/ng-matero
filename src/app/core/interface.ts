@@ -1,8 +1,18 @@
 import { AsyncValidatorFn, ValidatorFn } from '@angular/forms';
 import { MtxGridColumn } from '@ng-matero/extensions';
 
+export declare type FieldType =
+  'input'
+  | 'textarea'
+  | 'select'
+  | 'tree'
+  | 'autocomplete'
+  | 'datetime'
+  | 'date'
+  | 'month';
+
 export interface FormModel extends MtxGridColumn {
-  fieldType?: 'input' | 'textarea' | 'select' | 'tree' | 'autocomplete' | 'datetime' | 'date' | 'month';
+  fieldType?: FieldType;
   autocomplete?: true | false;
   autocompleteOptions?: string[];
   selectOptions?: SelectOptions[];
@@ -10,30 +20,116 @@ export interface FormModel extends MtxGridColumn {
   required?: true | false;
   disabled?: true | false;
   readonly?: true | false;
+  overlayOpen?: true | false;
   validators?: ValidatorFn | ValidatorFn[];
   asyncValidators?: AsyncValidatorFn | AsyncValidatorFn[];
-  overlayOpen?: true | false;
   treeOptions?: { [key: string]: {} };
   treeSelectedOptions?: string[];
   isSearch?: true | false;
   searchInitDatasCallback?: (response) => void;
 }
 
+export class AutocompleteFormModel implements FormModel {
+  constructor(header: string, field: string) {
+    this.header = header;
+    this.field = field;
+  }
+
+  header: string;
+  field: string;
+  fieldType: FieldType = 'autocomplete';
+  autocomplete = true;
+  multiple = false;
+  resizable = true;
+  readonly = true;
+  autocompleteOptions?: string[];
+}
+
+
+export class MonthFormModel implements FormModel {
+  constructor(header: string, field: string) {
+    this.header = header;
+    this.field = field;
+  }
+
+  header: string;
+  field: string;
+  fieldType: FieldType = 'month';
+  multiple = false;
+  resizable = true;
+  readonly = true;
+}
+
+export class DateFormModel extends MonthFormModel {
+  fieldType: FieldType = 'date';
+}
+
+export class DatetimeFormModel extends MonthFormModel {
+  fieldType: FieldType = 'datetime';
+}
+
+export class TreeFormModel implements FormModel {
+  constructor(header: string, field: string) {
+    this.header = header;
+    this.field = field;
+  }
+
+  header: string;
+  field: string;
+  fieldType: FieldType = 'tree';
+  multiple = false;
+  resizable = true;
+  treeOptions?: { [key: string]: {} };
+  treeSelectedOptions?: string[];
+  readonly = true;
+  overlayOpen = false;
+}
+
+export class MultipTreeFormModel extends TreeFormModel {
+  multiple = true;
+}
+
+
+export class SelectFormModel implements FormModel {
+  constructor(header: string, field: string) {
+    this.header = header;
+    this.field = field;
+  }
+
+  header: string;
+  field: string;
+  fieldType: FieldType = 'select';
+  multiple = false;
+  resizable = true;
+  selectOptions: SelectOptions[];
+  readonly = true;
+}
+
+export class MultipleSelectFormModel extends SelectFormModel {
+  multiple = true;
+}
+
+export class InputFormModel implements FormModel {
+  constructor(header: string, field: string) {
+    this.header = header;
+    this.field = field;
+  }
+
+  header: string;
+  field: string;
+  fieldType: FieldType = 'input';
+  multiple = false;
+  resizable = true;
+}
+
+export class TextareaFormModel extends InputFormModel {
+  fieldType: FieldType = 'textarea';
+}
+
 export interface SelectOptions {
   key: string;
   value: string;
 }
-
-export interface ActionOptions {
-  selectCallback?: any;
-  unSelectCallback?: any;
-  delUrl?: string;
-  editUrl?: string;
-  addUrl?: string;
-  selectUrl?: string;
-  primaryFieldAlias?: string;
-}
-
 
 export class TodoItemNode {
   children: TodoItemNode[];

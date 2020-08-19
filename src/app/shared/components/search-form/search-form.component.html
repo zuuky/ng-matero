@@ -110,16 +110,18 @@
 </mat-card-content>
 <mat-action-row>
   <div fxLayoutAlign="end center">
-    <button color="primary" mat-raised-button class="m-r-16"
+    <button mat-button color="primary" class="m-r-16"
             (click)="selectEvent.emit(reactiveForm.value)"
             [disabled]="reactiveForm.invalid">
-      Search
+      <mat-icon class="mat-icon notranslate material-icons mat-icon-no-color">search
+      </mat-icon>
     </button>
-    <button color="primary" mat-raised-button class="m-r-16" fxHide.lt-lg [disabled]="reactiveForm.invalid"
+    <button color="primary" mat-button class="m-r-16" fxHide.lt-lg [disabled]="reactiveForm.invalid"
             (click)="downloadEvent.emit(reactiveForm.value)">
-      download
+      <mat-icon class="mat-icon notranslate material-icons mat-icon-no-color" color="primary">cloud_download
+      </mat-icon>
     </button>
-    <button color="primary" mat-raised-button class="m-r-16" (click)="reset()">
+    <button color="primary" mat-button class="m-r-16" (click)="reset()">
       Reset
     </button>
   </div>

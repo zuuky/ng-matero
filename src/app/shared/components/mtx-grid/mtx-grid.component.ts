@@ -1,5 +1,6 @@
 import {
   AfterViewChecked,
+  ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   EventEmitter,
@@ -16,6 +17,7 @@ import { FormModel } from '@core';
   selector: 'app-mtx-grid',
   templateUrl: './mtx-grid.component.html',
   styleUrls: ['./mtx-grid.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MtxGridComponent implements OnInit, AfterViewChecked {
 
@@ -49,7 +51,9 @@ export class MtxGridComponent implements OnInit, AfterViewChecked {
   @Output()
   readonly delEvent: EventEmitter<any> = new EventEmitter<any>();
   @Output()
-  readonly editOrCopyAddEvent: EventEmitter<any> = new EventEmitter<any>();
+  readonly addEvent: EventEmitter<any> = new EventEmitter<any>();
+  @Output()
+  readonly editEvent: EventEmitter<any> = new EventEmitter<any>();
   @Output()
   readonly pageEvent: EventEmitter<any> = new EventEmitter<any>();
 
@@ -67,6 +71,7 @@ export class MtxGridComponent implements OnInit, AfterViewChecked {
         icon: 'file_copy',
         tooltip: 'copy',
         click: (data: any) => {
+          data.action = 'add';
           this.editOrCopyAdd(data);
         },
       },
@@ -76,6 +81,7 @@ export class MtxGridComponent implements OnInit, AfterViewChecked {
         icon: 'edit',
         tooltip: 'Edit',
         click: (data: any) => {
+          data.action = 'edit';
           this.editOrCopyAdd(data);
         },
       },
@@ -86,7 +92,7 @@ export class MtxGridComponent implements OnInit, AfterViewChecked {
         tooltip: 'Delete',
         color: 'warn',
         pop: true,
-        popTitle: 'Confirm delete?',
+        popTitle: ' Confirm delete ?',
         click: (data: any) => {
           this.delEvent.emit(data);
         },
@@ -112,10 +118,16 @@ export class MtxGridComponent implements OnInit, AfterViewChecked {
     $event.formModel = this.columns;
     const dialogRef = this.mtxDialog.originalOpen(EditFormComponent, {
       data: $event,
+      disableClose: true,
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.editOrCopyAddEvent.emit(result);
+        if ($event.action === 'add') {
+          this.addEvent.emit(result);
+        }
+        if ($event.action === 'edit') {
+          this.editEvent.emit(result);
+        }
       }
     });
   }

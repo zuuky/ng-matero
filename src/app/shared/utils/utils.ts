@@ -74,6 +74,19 @@ export function str2arr(str: string) {
 }
 
 /**
+ * 删除 指定下标元素
+ */
+export function delArrayByIndex(array: any[], delindex: number) {
+  const objCpy = [];
+  array.forEach((item, index) => {
+    if (index !== delindex) {
+      objCpy.push(item);
+    }
+  });
+  return objCpy;
+}
+
+/**
  * 获取滚动条的宽度
  */
 export function getScrollbarWidth() {

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output, ViewChildren } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output, ViewChildren } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { SelectTreeComponent } from '../select-tree/select-tree.component';
 import { FormModel, JwindDateFormat } from '@core';
@@ -10,6 +10,7 @@ import { MAT_DATETIME_FORMATS } from '@mat-datetimepicker/core';
   selector: 'app-search-form',
   templateUrl: './search-form.component.html',
   styleUrls: ['./search-form.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [{
     provide: MAT_DATETIME_FORMATS, useValue: {
       parse: {

@@ -1,6 +1,6 @@
-import {Component, Input, OnInit, ViewEncapsulation} from '@angular/core';
-import {MenuService} from '@core/bootstrap/menu.service';
-import {Router} from '@angular/router';
+import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
+import { MenuService } from '@core/bootstrap/menu.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'page-header',
@@ -22,11 +22,9 @@ export class PageHeaderComponent implements OnInit {
 
   ngOnInit() {
     this.nav = Array.isArray(this.nav) ? this.nav : [];
-
     if (this.nav.length === 0) {
       this.genBreadcrumb();
     }
-
     this.title = this.title || this.nav[this.nav.length - 1];
   }
 

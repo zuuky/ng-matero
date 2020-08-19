@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output,} from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import * as screenfull from 'screenfull';
 
 @Component({
@@ -16,17 +16,16 @@ export class HeaderComponent implements OnInit {
   constructor() {
   }
 
-  private get screenfull(): screenfull.Screenfull {
+  private static get screenfull(): screenfull.Screenfull {
     return screenfull as screenfull.Screenfull;
   }
 
   ngOnInit() {
   }
 
-  // TODO:
   toggleFullscreen() {
-    if (this.screenfull.enabled) {
-      this.screenfull.toggle();
+    if (HeaderComponent.screenfull.enabled) {
+      HeaderComponent.screenfull.toggle().then();
     }
   }
 }

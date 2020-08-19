@@ -1,9 +1,10 @@
 import { Injectable, Injector } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpEvent, HttpEventType, HttpParams } from '@angular/common/http';
 import { MtxDialog } from '@ng-matero/extensions';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { BehaviorSubject } from 'rxjs';
 import { delEmptyKey } from '@shared';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -27,9 +28,20 @@ export class HttpService {
 
   _isLoading = new BehaviorSubject<boolean>(false);
 
-  get(route: string, params?: any, callback?: (res) => void) {
+  private toHttpParam(params: Record<string, any>): HttpParams {
+    let httpParams = new HttpParams();
+    if (params) {
+      const record = delEmptyKey(params);
+      Object.keys(record).forEach(key => {
+        httpParams = httpParams.set(key, record[key]);
+      });
+    }
+    return httpParams;
+  }
+
+  get(route: string, params?: Record<string, any>, callback?: (res) => void) {
     this._isLoading.next(true);
-    return this.httpClient.get<any>(route, { params: delEmptyKey(params) as any }).subscribe(
+    return this.httpClient.get<any>(route, { params: this.toHttpParam(delEmptyKey(params)) }).subscribe(
       (res: any) => {
         callback(res);
         this.snackbar.open('success');
@@ -45,8 +57,30 @@ export class HttpService {
     );
   }
 
-  upload(route: string, formData: FormData) {
-    return this.post(route, formData);
+  upload(route: string, formData: FormData, callback?: (res) => void, params?: Record<string, any>) {
+    return this.httpClient
+      .post(route, formData, {
+        reportProgress: true,
+        observe: 'events',
+        params: this.toHttpParam(params),
+      }).pipe(map((event: HttpEvent<any>) => {
+        switch (event.type) {
+          case HttpEventType.Sent:
+            return `begin upload`;
+          // 正在上传
+          case HttpEventType.UploadProgress:
+            return `${Math.round((100 * event.loaded) / event.total)}%`;
+          // 上传完毕
+          case HttpEventType.Response:
+            // 回调
+            if (callback) {
+              callback(event.body);
+            }
+            return 'complete upload';
+          default:
+            return `uploading`;
+        }
+      }));
   }
 
 

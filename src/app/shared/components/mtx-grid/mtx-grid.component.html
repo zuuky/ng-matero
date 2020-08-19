@@ -1,4 +1,4 @@
-<mat-card class="mat-elevation-z1" style="margin-top: 36px">
+<mat-card class="mat-elevation-z4" style="margin-top: 36px">
   <mtx-grid [data]="datas"
             [columns]="columns"
             [length]="total"
@@ -22,3 +22,20 @@
             [summaryTemplate]="summaryCellTemplateMappings">
   </mtx-grid>
 </mat-card>
+<ng-template #toolbarTemplate>
+  <button mat-button class="m-l-8" color="primary" (click)="editOrCopyAdd({action:'add'})">
+    <mat-icon class="mat-icon notranslate material-icons mat-icon-no-color" color="primary">add
+    </mat-icon>
+    新增数据
+  </button>
+  <button mat-button class="m-l-32" color="primary" fxHide.lt-sm>
+    <mat-icon class="mat-icon notranslate material-icons mat-icon-no-color" color="primary">cloud_upload
+    </mat-icon>
+    文件上传
+  </button>
+  <button mat-button class="m-l-32" color="primary" fxHide.lt-sm>
+    <mat-icon class="mat-icon notranslate material-icons mat-icon-no-color" color="primary">cloud_download
+    </mat-icon>
+    下载文件上传模板
+  </button>
+</ng-template>

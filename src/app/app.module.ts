@@ -19,6 +19,9 @@ import { MomentDateAdapter } from '@angular/material-moment-adapter';
 
 import 'moment/locale/zh-cn';
 import { MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
+import { RouteReuseStrategy } from '@angular/router';
+import { ReuseTabStrategy } from '@shared/components/reuse-tab/reuse-tab.strategy';
+import { ReuseTabService } from '@shared/services/reusetab.service';
 
 export function StartupServiceFactory(startupService: StartupService) {
   return () => startupService.load();
@@ -84,6 +87,11 @@ export function TranslateLangServiceFactory(translateLangService: TranslateLangS
         verticalPosition: 'top',
         panelClass: ['jwind-snackbar'],
       },
+    },
+    {
+      provide: RouteReuseStrategy,
+      useClass: ReuseTabStrategy,
+      deps: [ReuseTabService],
     },
   ],
   bootstrap: [AppComponent],

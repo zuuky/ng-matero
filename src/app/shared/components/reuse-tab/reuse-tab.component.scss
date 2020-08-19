@@ -1,0 +1,18 @@
+.tab-group {
+  margin: 2px;
+  padding: 2px;
+}
+
+.mat-icon-custom {
+  font-size: 18px;
+  margin-bottom: 20px;
+  margin-left: 10px;
+}
+
+:host ::ng-deep .mat-tab-label-container .mat-tab-labels .mat-tab-label {
+  height: 64px;
+  font-size: 18px;
+  border-radius: 8px;
+  border: 2px solid;
+  margin-left: 4px;
+}

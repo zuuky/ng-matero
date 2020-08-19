@@ -1,0 +1,24 @@
+<mat-tab-group
+  [selectedIndex]="selectedTabIndex" [dynamicHeight]="true" class="matero-topmenu tab-group mat-elevation-z4"
+  (selectedIndexChange)="selectedIndexChange($event)" backgroundColor="primary" color="warn">
+  <mat-tab *ngFor="let tab of matTabs; let index = index" class="mat-elevation-z4">
+    <ng-template mat-tab-label>
+      <span
+        (contextmenu)="menu.open($event, { index: index }, matTabs.length > 1)">{{ getTabName(tab) | translate }}</span>
+      <button mat-icon-button *ngIf="matTabs.length > 1" class="tab_close" (click)="close(index, $event)">
+        <mat-icon class="mat-icon notranslate material-icons mat-icon-no-color mat-icon-custom">close
+        </mat-icon>
+      </button>
+    </ng-template>
+  </mat-tab>
+</mat-tab-group>
+<app-context-menu [matMenuTriggerFor]="main" #menu>
+  <mat-menu #main="matMenu">
+    <ng-template matMenuContent let-index="index">
+      <button mat-menu-item (click)="close(index)">close</button>
+      <button mat-menu-item *ngIf="index > 0" (click)="closeLeft(index)">close left</button>
+      <button mat-menu-item *ngIf="index !== matTabs.length - 1" (click)="closeRight(index)">close right</button>
+      <button mat-menu-item *ngIf="matTabs.length > 0" (click)="closeOther(index)">close other</button>
+    </ng-template>
+  </mat-menu>
+</app-context-menu>

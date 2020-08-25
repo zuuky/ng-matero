@@ -1,7 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {DesignIconsService} from './icons.service';
+import { Component, OnInit } from '@angular/core';
+import { DesignIconsService } from './icons.service';
 
-import {MAT_ICONS} from '@shared';
+import { MAT_ICONS } from '@shared';
 
 @Component({
   selector: 'app-design-icons',

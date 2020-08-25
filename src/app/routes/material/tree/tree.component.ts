@@ -1,8 +1,8 @@
-import {CollectionViewer, SelectionChange} from '@angular/cdk/collections';
-import {FlatTreeControl} from '@angular/cdk/tree';
-import {Component, Injectable} from '@angular/core';
-import {BehaviorSubject, merge, Observable} from 'rxjs';
-import {map} from 'rxjs/operators';
+import { CollectionViewer, SelectionChange } from '@angular/cdk/collections';
+import { FlatTreeControl } from '@angular/cdk/tree';
+import { Component, Injectable } from '@angular/core';
+import { BehaviorSubject, merge, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 /** Flat node with expandable and level information */
 export class DynamicFlatNode {
@@ -10,7 +10,7 @@ export class DynamicFlatNode {
     public item: string,
     public level = 1,
     public expandable = false,
-    public isLoading = false
+    public isLoading = false,
   ) {
   }
 }
@@ -57,7 +57,7 @@ export class DynamicDataSource {
 
   constructor(
     private treeControl: FlatTreeControl<DynamicFlatNode>,
-    private database: DynamicDatabase
+    private database: DynamicDatabase,
   ) {
   }
 
@@ -82,7 +82,7 @@ export class DynamicDataSource {
     });
 
     return merge(collectionViewer.viewChange, this.dataChange).pipe(
-      map(() => this.data)
+      map(() => this.data),
     );
   }
 
@@ -119,8 +119,8 @@ export class DynamicDataSource {
             new DynamicFlatNode(
               name,
               node.level + 1,
-              this.database.isExpandable(name)
-            )
+              this.database.isExpandable(name),
+            ),
         );
         this.data.splice(index + 1, 0, ...nodes);
       } else {
@@ -157,7 +157,7 @@ export class TreeComponent {
   constructor(database: DynamicDatabase) {
     this.treeControl = new FlatTreeControl<DynamicFlatNode>(
       this.getLevel,
-      this.isExpandable
+      this.isExpandable,
     );
     this.dataSource = new DynamicDataSource(this.treeControl, database);
 

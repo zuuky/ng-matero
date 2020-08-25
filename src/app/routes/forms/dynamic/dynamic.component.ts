@@ -1,8 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {FormGroup} from '@angular/forms';
-import {FormlyFieldConfig, FormlyFormOptions} from '@ngx-formly/core';
+import { Component, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
+import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
 
-import {ToastrService} from 'ngx-toastr';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-forms-dynamic',
@@ -10,7 +10,7 @@ import {ToastrService} from 'ngx-toastr';
 })
 export class FormsDynamicComponent implements OnInit {
   form = new FormGroup({});
-  model = {email: 'email@gmail.com'};
+  model = { email: 'email@gmail.com' };
   fields: FormlyFieldConfig[] = [
     {
       key: 'text',

@@ -1,4 +1,4 @@
-import {Inject, Injectable, Optional} from '@angular/core';
+import { Inject, Injectable, Optional } from '@angular/core';
 import {
   ActivatedRouteSnapshot,
   CanActivate,
@@ -9,9 +9,9 @@ import {
   RouterStateSnapshot,
   UrlSegment,
 } from '@angular/router';
-import {DOCUMENT} from '@angular/common';
-import {TokenService} from './token.service';
-import {ModelConsService} from '@shared/services/modelcons.service';
+import { DOCUMENT } from '@angular/common';
+import { TokenService } from './token.service';
+import { ModelConsService } from '@shared/services/modelcons.service';
 
 @Injectable({
   providedIn: 'root',
@@ -20,7 +20,7 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
   constructor(
     private _router: Router,
     private _token: TokenService,
-    @Optional() @Inject(DOCUMENT) private _document: any
+    @Optional() @Inject(DOCUMENT) private _document: any,
   ) {
   }
 
@@ -48,7 +48,7 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
       if (/^https?:\/\//g.test(url!)) {
         this._document.location.href = url as string;
       } else {
-        this._router.navigateByUrl(url);
+        this._router.navigateByUrl(url).then();
       }
     });
   }

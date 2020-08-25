@@ -1,14 +1,14 @@
-import {Component, ElementRef, HostBinding, Inject, OnDestroy, OnInit, Optional, ViewChild,} from '@angular/core';
-import {DOCUMENT} from '@angular/common';
-import {NavigationEnd, Router} from '@angular/router';
-import {Subscription} from 'rxjs';
-import {BreakpointObserver} from '@angular/cdk/layout';
-import {OverlayContainer} from '@angular/cdk/overlay';
-import {Directionality} from '@angular/cdk/bidi';
-import {MatSidenav, MatSidenavContent} from '@angular/material/sidenav';
+import { Component, ElementRef, HostBinding, Inject, OnDestroy, OnInit, Optional, ViewChild } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { NavigationEnd, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { BreakpointObserver } from '@angular/cdk/layout';
+import { OverlayContainer } from '@angular/cdk/overlay';
+import { Directionality } from '@angular/cdk/bidi';
+import { MatSidenav, MatSidenavContent } from '@angular/material/sidenav';
 
-import {AppSettings, SettingsService} from '@core';
-import {AppDirectionality} from '@shared';
+import { AppSettings, SettingsService } from '@core';
+import { AppDirectionality } from '@shared';
 
 const MOBILE_MEDIAQUERY = 'screen and (max-width: 599px)';
 const TABLET_MEDIAQUERY = 'screen and (min-width: 600px) and (max-width: 959px)';
@@ -19,8 +19,8 @@ const MONITOR_MEDIAQUERY = 'screen and (min-width: 960px)';
   templateUrl: './admin-layout.component.html',
 })
 export class AdminLayoutComponent implements OnInit, OnDestroy {
-  @ViewChild('sidenav', {static: true}) sidenav: MatSidenav;
-  @ViewChild('content', {static: true}) content: MatSidenavContent;
+  @ViewChild('sidenav', { static: true }) sidenav: MatSidenav;
+  @ViewChild('content', { static: true }) content: MatSidenavContent;
 
   options = this._settings.getOptions();
 
@@ -37,7 +37,7 @@ export class AdminLayoutComponent implements OnInit, OnDestroy {
     private _element: ElementRef,
     private _settings: SettingsService,
     @Optional() @Inject(DOCUMENT) private _document: Document,
-    @Inject(Directionality) public dir: AppDirectionality
+    @Inject(Directionality) public dir: AppDirectionality,
   ) {
     this.dir.value = this.options.dir;
     this._document.body.dir = this.dir.value;
@@ -56,7 +56,7 @@ export class AdminLayoutComponent implements OnInit, OnDestroy {
     // TODO: Scroll top to container
     this._router.events.subscribe(evt => {
       if (evt instanceof NavigationEnd) {
-        this.content.scrollTo({top: 0});
+        this.content.scrollTo({ top: 0 });
       }
     });
   }

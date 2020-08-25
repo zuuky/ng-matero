@@ -1,5 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import {MenuService} from '@core';
+import { Component, OnInit } from '@angular/core';
+import { MenuService } from '@core';
 
 @Component({
   selector: 'app-topmenu',

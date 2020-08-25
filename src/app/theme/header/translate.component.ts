@@ -1,6 +1,6 @@
-import {Component} from '@angular/core';
-import {TranslateService} from '@ngx-translate/core';
-import {SettingsService} from '@core';
+import { Component } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
+import { SettingsService } from '@core';
 
 @Component({
   selector: 'app-translate',

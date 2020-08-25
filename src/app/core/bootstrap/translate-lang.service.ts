@@ -1,7 +1,7 @@
-import {Injectable, Injector} from '@angular/core';
-import {LOCATION_INITIALIZED} from '@angular/common';
-import {TranslateService} from '@ngx-translate/core';
-import {SettingsService} from './settings.service';
+import { Injectable, Injector } from '@angular/core';
+import { LOCATION_INITIALIZED } from '@angular/common';
+import { TranslateService } from '@ngx-translate/core';
+import { SettingsService } from './settings.service';
 
 @Injectable({
   providedIn: 'root',
@@ -10,7 +10,7 @@ export class TranslateLangService {
   constructor(
     private _injector: Injector,
     private _translate: TranslateService,
-    private _settings: SettingsService
+    private _settings: SettingsService,
   ) {
   }
 
@@ -32,7 +32,7 @@ export class TranslateLangService {
           },
           () => {
             resolve(null);
-          }
+          },
         );
       });
     });

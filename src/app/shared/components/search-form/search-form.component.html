@@ -1,6 +1,6 @@
 <mat-card-content>
   <form [formGroup]="reactiveForm" class="form-field-full">
-    <div class="matero-row" fxLayout="row wrap" fxLayoutAlign="start center">
+    <div class="matero-row matero-col p-l-48 " fxLayout="row wrap" fxLayoutAlign="start center">
       <ng-container *ngFor="let item of models">
         <!-- input -->
         <mat-form-field *ngIf="item.fieldType === 'input'" class="m-r-32" fxFlex="30"

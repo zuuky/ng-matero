@@ -1,5 +1,5 @@
-import {Component} from '@angular/core';
-import {MatSnackBar} from '@angular/material/snack-bar';
+import { Component } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-snack-bar',
@@ -11,10 +11,10 @@ export class SnackBarComponent {
   }
 
   openDiscoPartySnackBar() {
-    this.snackBar.open('Disco party!', 'Dismiss', {duration: 5000});
+    this.snackBar.open('Disco party!', 'Dismiss', { duration: 5000 });
   }
 
   openNotificationSnackBar() {
-    this.snackBar.open('Thank you for your support!', '', {duration: 2000});
+    this.snackBar.open('Thank you for your support!', '', { duration: 2000 });
   }
 }

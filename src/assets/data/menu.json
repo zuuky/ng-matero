@@ -48,8 +48,8 @@
       "icon": "favorite",
       "children": [
         {
-          "route": "",
-          "name": "form-controls",
+          "route": "controls",
+          "name": "controls",
           "type": "sub",
           "children": [
             {
@@ -100,14 +100,21 @@
           ]
         },
         {
-          "route": "",
+          "route": "navigation",
           "name": "navigation",
           "type": "sub",
           "children": [
             {
               "route": "menu",
               "name": "menu",
-              "type": "link"
+              "type": "sub",
+              "children": [
+                {
+                  "route": "level4",
+                  "name": "level4",
+                  "type": "link"
+                }
+              ]
             },
             {
               "route": "sidenav",
@@ -122,7 +129,7 @@
           ]
         },
         {
-          "route": "",
+          "route": "layout",
           "name": "layout",
           "type": "sub",
           "children": [
@@ -169,8 +176,8 @@
           ]
         },
         {
-          "route": "",
-          "name": "buttons-indicators",
+          "route": "buttons",
+          "name": "buttons",
           "type": "sub",
           "children": [
             {
@@ -216,8 +223,8 @@
           ]
         },
         {
-          "route": "",
-          "name": "popups-modals",
+          "route": "popups",
+          "name": "popups",
           "type": "sub",
           "children": [
             {
@@ -243,8 +250,8 @@
           ]
         },
         {
-          "route": "data-table",
-          "name": "data-table",
+          "route": "tables",
+          "name": "tables",
           "type": "sub",
           "children": [
             {

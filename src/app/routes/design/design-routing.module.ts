@@ -1,12 +1,12 @@
-import {NgModule} from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 
-import {DesignColorsComponent} from './colors/colors.component';
-import {DesignIconsComponent} from './icons/icons.component';
+import { DesignColorsComponent } from './colors/colors.component';
+import { DesignIconsComponent } from './icons/icons.component';
 
 const routes: Routes = [
-  {path: 'colors', component: DesignColorsComponent, data: {title: 'Material Colors'}},
-  {path: 'icons', component: DesignIconsComponent, data: {title: 'Material Icons'}},
+  { path: 'colors', component: DesignColorsComponent, data: { title: 'Material Colors' } },
+  { path: 'icons', component: DesignIconsComponent, data: { title: 'Material Icons' } },
 ];
 
 @NgModule({

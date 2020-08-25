@@ -1,6 +1,6 @@
-import {Component} from '@angular/core';
-import {Router} from '@angular/router';
-import {MenuService, SettingsService, TokenService} from '@core';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { MenuService, SettingsService, TokenService } from '@core';
 
 @Component({
   selector: 'app-user',
@@ -34,7 +34,7 @@ import {MenuService, SettingsService, TokenService} from '@core';
 export class UserComponent {
   constructor(
     private _router: Router,
-    private _menu: MenuService
+    private _menu: MenuService,
   ) {
   }
 

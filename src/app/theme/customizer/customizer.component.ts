@@ -1,6 +1,6 @@
-import {Component, EventEmitter, OnInit, Output, ViewEncapsulation} from '@angular/core';
-import {SettingsService} from '@core';
-import {CdkDragStart} from '@angular/cdk/drag-drop';
+import { Component, EventEmitter, OnInit, Output, ViewEncapsulation } from '@angular/core';
+import { SettingsService } from '@core';
+import { CdkDragStart } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-customizer',

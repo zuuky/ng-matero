@@ -1,5 +1,5 @@
-import {Component} from '@angular/core';
-import {MatSnackBar} from '@angular/material/snack-bar';
+import { Component } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-slide-toggle',
@@ -15,6 +15,6 @@ export class SlideToggleComponent {
   }
 
   onFormSubmit() {
-    this.snackBar.open('Terms and condistions accepted!', '', {duration: 2000});
+    this.snackBar.open('Terms and condistions accepted!', '', { duration: 2000 });
   }
 }

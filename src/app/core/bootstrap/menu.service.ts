@@ -1,6 +1,6 @@
-import {Injectable} from '@angular/core';
-import {BehaviorSubject} from 'rxjs/internal/BehaviorSubject';
-import {Observable} from 'rxjs/internal/Observable';
+import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
+import { Observable } from 'rxjs/internal/Observable';
 
 export interface MenuTag {
   color: string; // Background Color
@@ -30,6 +30,8 @@ export interface Menu {
 export class MenuService {
   private _menu$: BehaviorSubject<Menu[]> = new BehaviorSubject<Menu[]>([]);
 
+  menuTempArr: Set<string> = new Set<string>();
+
   getAll(): Observable<Menu[]> {
     return this._menu$.asObservable();
   }
@@ -53,7 +55,32 @@ export class MenuService {
     return this.getMenuLevel(routeArr)[routeArr.length - 1];
   }
 
+  private getMenuLevelLoop(menus: MenuChildrenItem[], route: string): Set<string> {
+    menus.forEach(item => {
+      if (item.route === route) {
+        this.menuTempArr.add(item.name);
+      } else if (item.children && item.children.length) {
+        this.getMenuLevelLoop(item.children, route);
+      }
+    });
+    return this.menuTempArr;
+  }
+
   getMenuLevel(routeArr: string[]): string[] {
+    this.menuTempArr.clear();
+    this._menu$.value.forEach(item => {
+      routeArr.forEach(value => {
+        if (item.route === value) {
+          this.menuTempArr.add(item.name);
+        } else if (item.children && item.children.length) {
+          this.getMenuLevelLoop(item.children, value);
+        }
+      });
+    });
+    return [...this.menuTempArr];
+  }
+
+  getMenuLevelBak(routeArr: string[]): string[] {
     const tmpArr = [];
     this._menu$.value.forEach(item => {
       if (item.route === routeArr[0]) {
@@ -85,6 +112,7 @@ export class MenuService {
         }
       }
     });
+    console.log(tmpArr);
     return tmpArr;
   }
 

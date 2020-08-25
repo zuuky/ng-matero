@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import { Component } from '@angular/core';
 
 export interface Dog {
   name: string;
@@ -12,19 +12,19 @@ export interface Dog {
 })
 export class GridListComponent {
   dogs: Dog[] = [
-    {name: 'Porter', human: 'Kara'},
-    {name: 'Mal', human: 'Jeremy'},
-    {name: 'Koby', human: 'Igor'},
-    {name: 'Razzle', human: 'Ward'},
-    {name: 'Molly', human: 'Rob'},
-    {name: 'Husi', human: 'Matias'},
+    { name: 'Porter', human: 'Kara' },
+    { name: 'Mal', human: 'Jeremy' },
+    { name: 'Koby', human: 'Igor' },
+    { name: 'Razzle', human: 'Ward' },
+    { name: 'Molly', human: 'Rob' },
+    { name: 'Husi', human: 'Matias' },
   ];
 
   tiles = [
-    {text: 'Cappuccino', cols: 3, rows: 1, color: 'lightblue'},
-    {text: 'Mocha', cols: 1, rows: 2, color: 'lightgreen'},
-    {text: 'Latte', cols: 1, rows: 1, color: 'lightpink'},
-    {text: 'Iced coffee', cols: 2, rows: 1, color: '#DDBDF1'},
+    { text: 'Cappuccino', cols: 3, rows: 1, color: 'lightblue' },
+    { text: 'Mocha', cols: 1, rows: 2, color: 'lightgreen' },
+    { text: 'Latte', cols: 1, rows: 1, color: 'lightpink' },
+    { text: 'Iced coffee', cols: 2, rows: 1, color: '#DDBDF1' },
   ];
 
   fixedCols = 4;

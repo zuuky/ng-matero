@@ -1,5 +1,6 @@
 <ul class="matero-sidemenu level-0" navAccordion>
-  <li *ngFor="let menuItem of menus | async" [group]="menuItem.route" class="matero-sidemenu-item"
+  <li *ngFor="let menuItem of menus | async" [group]="menuItem.route"
+      class="matero-sidemenu-item"
       navAccordionLink
       routerLinkActive="active">
     <a *ngIf="menuItem.type === 'link'" [matRippleDisabled]="!ripple"
@@ -44,8 +45,7 @@
     </a>
     <!-- level 1 -->
     <a *ngIf="menuItem.type === 'sub'" [matRippleDisabled]="!ripple" class="matero-sidemenu-toggle"
-       href="javascript:void(0);"
-       matRipple navAccordionToggle>
+       href="javascript:void(0);" matRipple navAccordionToggle>
       <mat-icon class="menu-icon">{{menuItem.icon}}</mat-icon>
       <span class="menu-name">{{menuItem.name | translate}}</span>
       <span *ngIf="menuItem.label" class="menu-label bg-{{menuItem.label.color}}">
@@ -58,9 +58,8 @@
       <mat-icon class="menu-caret">arrow_drop_down</mat-icon>
     </a>
     <ul *ngIf="menuItem.type === 'sub'" class="matero-sidemenu submenu level-1" navAccordion>
-      <li *ngFor="let childLvl1 of menuItem.children" [group]="childLvl1.route" class="matero-sidemenu-item"
-          navAccordionLink
-          routerLinkActive="active">
+      <li *ngFor="let childLvl1 of menuItem.children" [group]="childLvl1.route"
+          class="matero-sidemenu-item" navAccordionLink routerLinkActive="active">
         <a *ngIf="childLvl1.type === 'link'"
            [matRippleDisabled]="!ripple"
            [routerLink]="buildRoute([menuItem.route, childLvl1.route])"
@@ -81,7 +80,6 @@
           <span fxFlex></span>
           <mat-icon class="menu-caret">launch</mat-icon>
         </a>
-        <!-- level 2 -->
         <a *ngIf="childLvl1.type === 'sub'" [matRippleDisabled]="!ripple" class="matero-sidemenu-toggle"
            href="javascript:void(0);"
            matRipple navAccordionToggle>
@@ -89,12 +87,13 @@
           <span fxFlex></span>
           <mat-icon class="menu-caret">arrow_drop_down</mat-icon>
         </a>
-        <ul *ngIf="childLvl1.type === 'sub'" class="matero-sidemenu submenu level-2">
-          <li *ngFor="let childLvl2 of childLvl1.children" class="matero-sidemenu-item"
-              routerLinkActive="active">
+        <ul *ngIf="childLvl1.type === 'sub'" class="matero-sidemenu submenu level-2" navAccordion>
+          <li *ngFor="let childLvl2 of childLvl1.children" [group]="childLvl2.route"
+              class="matero-sidemenu-item"
+              navAccordionLink routerLinkActive="active">
             <a *ngIf="childLvl2.type === 'link'"
                [matRippleDisabled]="!ripple"
-               [routerLink]="buildRoute([menuItem.route, childLvl1.route, childLvl2.route])"
+               [routerLink]="buildRoute([menuItem.route,childLvl1.route, childLvl2.route])"
                class="matero-sidemenu-link" matRipple>
               <span class="menu-name">{{childLvl2.name | translate}}</span>
             </a>
@@ -112,6 +111,39 @@
               <span fxFlex></span>
               <mat-icon class="menu-caret">launch</mat-icon>
             </a>
+            <!-- level 3 -->
+            <a *ngIf="childLvl2.type === 'sub'" [matRippleDisabled]="!ripple" class="matero-sidemenu-toggle"
+               href="javascript:void(0);"
+               matRipple navAccordionToggle>
+              <span class="menu-name">{{childLvl2.name | translate}}</span>
+              <span fxFlex></span>
+              <mat-icon class="menu-caret">arrow_drop_down</mat-icon>
+            </a>
+            <ul *ngIf="childLvl2.type === 'sub'" class="matero-sidemenu submenu level-3" navAccordion>
+              <li *ngFor="let childLvl3 of childLvl2.children" class="matero-sidemenu-item"
+                  [group]="childLvl3.route" navAccordionLink routerLinkActive="active">
+                <a *ngIf="childLvl3.type === 'link'"
+                   [matRippleDisabled]="!ripple"
+                   [routerLink]="buildRoute([menuItem.route,childLvl1.route, childLvl2.route, childLvl3.route])"
+                   class="matero-sidemenu-link" matRipple>
+                  <span class="menu-name">{{childLvl3.name | translate}}</span>
+                </a>
+                <a *ngIf="childLvl3.type === 'extLink'" [href]="childLvl3.route"
+                   [matRippleDisabled]="!ripple"
+                   class="matero-sidemenu-link" matRipple>
+                  <span class="menu-name">{{childLvl3.name | translate}}</span>
+                  <span fxFlex></span>
+                  <mat-icon class="menu-caret">launch</mat-icon>
+                </a>
+                <a *ngIf="childLvl3.type === 'extTabLink'" [href]="childLvl3.route" [matRippleDisabled]="!ripple"
+                   class="matero-sidemenu-link"
+                   matRipple target="_blank">
+                  <span class="menu-name">{{childLvl3.name | translate}}</span>
+                  <span fxFlex></span>
+                  <mat-icon class="menu-caret">launch</mat-icon>
+                </a>
+              </li>
+            </ul>
           </li>
         </ul>
       </li>

@@ -1,11 +1,11 @@
-import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {catchError} from 'rxjs/operators';
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { catchError } from 'rxjs/operators';
 
-import {MenuService} from './menu.service';
-import {AuthGuard} from '@core/authentication/auth.guard';
-import {TokenService} from '@core/authentication/token.service';
-import {ModelConsService} from '@shared/services/modelcons.service';
+import { MenuService } from './menu.service';
+import { AuthGuard } from '@core/authentication/auth.guard';
+import { TokenService } from '@core/authentication/token.service';
+import { ModelConsService } from '@shared/services/modelcons.service';
 
 @Injectable({
   providedIn: 'root',
@@ -25,7 +25,7 @@ export class StartupService {
           catchError(res => {
             resolve();
             return res;
-          })
+          }),
         ).subscribe(
           (res: any) => {
             const menu = res.data ? res.data.menu : res.menu;
@@ -37,7 +37,7 @@ export class StartupService {
           },
           () => {
             resolve();
-          }
+          },
         );
       });
     }

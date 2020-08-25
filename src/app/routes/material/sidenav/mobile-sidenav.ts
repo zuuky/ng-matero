@@ -6,14 +6,14 @@
  * found in the LICENSE file at https://angular.io/license
  */
 
-import {MediaMatcher} from '@angular/cdk/layout';
-import {ChangeDetectorRef, Component, OnDestroy} from '@angular/core';
+import { MediaMatcher } from '@angular/cdk/layout';
+import { ChangeDetectorRef, Component, OnDestroy } from '@angular/core';
 
 @Component({
   selector: 'mobile-sidenav',
   templateUrl: 'mobile-sidenav.html',
   styleUrls: ['shared.scss', 'mobile-sidenav.scss'],
-  host: {class: 'demo-sidenav-app'},
+  host: { class: 'demo-sidenav-app' },
 })
 export class SidenavMobileComponent implements OnDestroy {
   mobileQuery: MediaQueryList;

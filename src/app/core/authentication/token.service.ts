@@ -1,10 +1,10 @@
-import {Injectable} from '@angular/core';
-import {BehaviorSubject, Observable} from 'rxjs';
-import {share} from 'rxjs/operators';
+import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { share } from 'rxjs/operators';
 
-import {LocalStorageService} from '@shared/services/storage.service';
-import {AuthReferrer, TokenModel} from './interface';
-import {ModelConsService} from '@shared/services/modelcons.service';
+import { LocalStorageService } from '@shared/services/storage.service';
+import { AuthReferrer, TokenModel } from './interface';
+import { ModelConsService } from '@shared/services/modelcons.service';
 
 @Injectable({
   providedIn: 'root',

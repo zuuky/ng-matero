@@ -1,8 +1,8 @@
-import {Injectable} from '@angular/core';
-import {BehaviorSubject, Observable} from 'rxjs';
-import {AppSettings, defaults} from '../settings';
-import {LocalStorageService} from '@shared/services/storage.service';
-import {ModelConsService} from '@shared/services/modelcons.service';
+import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { AppSettings, defaults } from '../settings';
+import { LocalStorageService } from '@shared/services/storage.service';
+import { ModelConsService } from '@shared/services/modelcons.service';
 
 export interface User {
   id?: number;
@@ -38,7 +38,7 @@ export class SettingsService {
   }
 
   setNavState(type: string, value: boolean) {
-    this._notify$.next({type, value} as any);
+    this._notify$.next({ type, value } as any);
   }
 
   getOptions(): AppSettings {
@@ -47,6 +47,6 @@ export class SettingsService {
 
   setLanguage(lang: string) {
     this._options.language = lang;
-    this._notify$.next({lang});
+    this._notify$.next({ lang });
   }
 }

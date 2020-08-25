@@ -1,9 +1,9 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {MatPaginator} from '@angular/material/paginator';
-import {MatSort} from '@angular/material/sort';
-import {DataSource} from '@angular/cdk/table';
-import {BehaviorSubject, merge, Observable} from 'rxjs';
-import {map} from 'rxjs/operators';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { DataSource } from '@angular/cdk/table';
+import { BehaviorSubject, merge, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 export interface UserData {
   name: string;
@@ -12,12 +12,12 @@ export interface UserData {
 }
 
 const exampleData = [
-  {name: 'Austin', color: 'blue', age: 30},
-  {name: 'Jeremy', color: 'green', age: 33},
-  {name: 'Kara', color: 'purple', age: 29},
-  {name: 'Tina', color: 'yellow', age: 35},
-  {name: 'Brad', color: 'pink', age: 40},
-  {name: 'Jules', color: 'red', age: 21},
+  { name: 'Austin', color: 'blue', age: 30 },
+  { name: 'Jeremy', color: 'green', age: 33 },
+  { name: 'Kara', color: 'purple', age: 29 },
+  { name: 'Tina', color: 'yellow', age: 35 },
+  { name: 'Brad', color: 'pink', age: 40 },
+  { name: 'Jules', color: 'red', age: 21 },
 ];
 
 @Component({
@@ -26,8 +26,8 @@ const exampleData = [
   styleUrls: ['./table.component.scss'],
 })
 export class TableComponent implements OnInit {
-  @ViewChild(MatSort, {static: true}) sort: MatSort;
-  @ViewChild(MatPaginator, {static: true}) pager: MatPaginator;
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
+  @ViewChild(MatPaginator, { static: true }) pager: MatPaginator;
 
   displayedColumns = ['name', 'color', 'age'];
   basicDataSource: BasicDataSource;
@@ -102,7 +102,7 @@ export class PaginatedDataSource extends DataSource<UserData> {
         const data = [...exampleData];
         const startIndex = this.paginator.pageIndex * this.paginator.pageSize;
         return data.splice(startIndex, this.paginator.pageSize);
-      })
+      }),
     );
   }
 

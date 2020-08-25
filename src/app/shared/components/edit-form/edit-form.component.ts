@@ -1,5 +1,6 @@
 import {
-  AfterViewChecked, ChangeDetectionStrategy,
+  AfterViewChecked,
+  ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   EventEmitter,

@@ -1,7 +1,7 @@
-import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
-import {serialize} from '@shared';
+import { serialize } from '@shared';
 
 @Injectable()
 export class TablesRemoteDataService {

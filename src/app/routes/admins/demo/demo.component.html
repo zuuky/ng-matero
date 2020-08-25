@@ -1,5 +1,5 @@
 <div class="matero-row" fxLayout="row wrap" fxLayoutAlign="start center" *ngIf="formModels">
-  <mat-card class="matero-col" fxFlex="100">
+  <mat-card class="matero-col mat-elevation-z4" fxFlex="100">
     <app-search-form [models]="formModels" (searchFilterEvent)="searchFilter = $event"
                      (selectEvent)="selectEvent($event)"
                      (downloadEvent)="downloadEvent($event)"></app-search-form>

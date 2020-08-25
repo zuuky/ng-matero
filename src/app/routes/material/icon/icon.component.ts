@@ -1,5 +1,5 @@
-import {Component} from '@angular/core';
-import {MatSnackBar} from '@angular/material/snack-bar';
+import { Component } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-icon',
@@ -11,6 +11,6 @@ export class IconComponent {
   }
 
   deleteIcon() {
-    this.snackBar.open('Item deleted', '', {duration: 2000});
+    this.snackBar.open('Item deleted', '', { duration: 2000 });
   }
 }

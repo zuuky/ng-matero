@@ -6,13 +6,13 @@
  * found in the LICENSE file at https://angular.io/license
  */
 
-import {Routes} from '@angular/router';
+import { Routes } from '@angular/router';
 
-import {FoggyTabContentComponent, RainyTabContentComponent, SunnyTabContentComponent,} from './tab.component';
+import { FoggyTabContentComponent, RainyTabContentComponent, SunnyTabContentComponent } from './tab.component';
 
 export const TABS_DEMO_ROUTES: Routes = [
-  {path: '', redirectTo: 'sunny-tab', pathMatch: 'full'},
-  {path: 'sunny-tab', component: SunnyTabContentComponent},
-  {path: 'rainy-tab', component: RainyTabContentComponent},
-  {path: 'foggy-tab', component: FoggyTabContentComponent},
+  { path: '', redirectTo: 'sunny-tab', pathMatch: 'full' },
+  { path: 'sunny-tab', component: SunnyTabContentComponent },
+  { path: 'rainy-tab', component: RainyTabContentComponent },
+  { path: 'foggy-tab', component: FoggyTabContentComponent },
 ];

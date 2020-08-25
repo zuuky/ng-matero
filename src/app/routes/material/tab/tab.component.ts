@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-tab',
@@ -8,9 +8,9 @@ import {Component} from '@angular/core';
 export class TabComponent {
   // Nav bar demo
   tabLinks = [
-    {label: 'Sun', link: 'sunny-tab'},
-    {label: 'Rain', link: 'rainy-tab'},
-    {label: 'Fog', link: 'foggy-tab'},
+    { label: 'Sun', link: 'sunny-tab' },
+    { label: 'Rain', link: 'rainy-tab' },
+    { label: 'Fog', link: 'foggy-tab' },
   ];
 
   // Standard tabs demo

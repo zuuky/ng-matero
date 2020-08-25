@@ -58,3 +58,8 @@
     justify-content: space-around;
   }
 }
+
+/*  primary color */
+.primary-color {
+  color: mat-color($primary) !important;
+}

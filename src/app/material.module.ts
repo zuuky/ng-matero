@@ -91,7 +91,7 @@ import { OverlayModule } from '@angular/cdk/overlay';
     MatMomentDatetimeModule,
     MatDatepickerModule,
     MatDatetimepickerModule,
-    OverlayModule
+    OverlayModule,
   ],
 })
 export class MaterialModule {

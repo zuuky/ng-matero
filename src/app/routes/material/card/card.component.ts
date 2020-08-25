@@ -1,5 +1,5 @@
-import {Component} from '@angular/core';
-import {MatSnackBar} from '@angular/material/snack-bar';
+import { Component } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-card',
@@ -13,6 +13,6 @@ export class CardComponent {
   }
 
   openSnackbar(message: string) {
-    this.snackBar.open(message, '', {duration: 2000});
+    this.snackBar.open(message, '', { duration: 2000 });
   }
 }

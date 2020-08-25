@@ -1,6 +1,6 @@
-import {Component, Input, OnInit, ViewEncapsulation} from '@angular/core';
-import {Router} from '@angular/router';
-import {MenuService} from '@core/bootstrap/menu.service';
+import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
+import { Router } from '@angular/router';
+import { MenuService } from '@core/bootstrap/menu.service';
 
 @Component({
   selector: 'breadcrumb',

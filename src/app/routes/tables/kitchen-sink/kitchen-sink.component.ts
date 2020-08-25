@@ -1,11 +1,11 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 
-import {MtxDialog} from '@ng-matero/extensions/dialog';
+import { MtxDialog } from '@ng-matero/extensions/dialog';
 
-import {TablesKitchenSinkService} from './kitchen-sink.service';
-import {TablesDataService} from '../data.service';
-import {TablesKitchenSinkEditComponent} from './edit/edit.component';
-import {MtxGridColumn} from '@ng-matero/extensions';
+import { TablesKitchenSinkService } from './kitchen-sink.service';
+import { TablesDataService } from '../data.service';
+import { TablesKitchenSinkEditComponent } from './edit/edit.component';
+import { MtxGridColumn } from '@ng-matero/extensions';
 
 @Component({
   selector: 'app-table-kitchen-sink',
@@ -16,19 +16,19 @@ import {MtxGridColumn} from '@ng-matero/extensions';
 })
 export class TablesKitchenSinkComponent implements OnInit {
   columns: MtxGridColumn[] = [
-    {header: 'Position', field: 'position', sortable: true},
-    {header: 'Name', field: 'name', sortable: true, disabled: true},
-    {header: 'Weight', field: 'weight'},
-    {header: 'Symbol', field: 'symbol'},
-    {header: 'Gender', field: 'gender'},
-    {header: 'Mobile', field: 'mobile', hide: true},
-    {header: 'Tele', field: 'tele'},
-    {header: 'City', field: 'city'},
-    {header: 'Address', field: 'address', width: '200px'},
-    {header: 'Date', field: 'date'},
-    {header: 'Website', field: 'website'},
-    {header: 'Company', field: 'company'},
-    {header: 'Email', field: 'email'},
+    { header: 'Position', field: 'position', sortable: true },
+    { header: 'Name', field: 'name', sortable: true, disabled: true },
+    { header: 'Weight', field: 'weight' },
+    { header: 'Symbol', field: 'symbol' },
+    { header: 'Gender', field: 'gender' },
+    { header: 'Mobile', field: 'mobile', hide: true },
+    { header: 'Tele', field: 'tele' },
+    { header: 'City', field: 'city' },
+    { header: 'Address', field: 'address', width: '200px' },
+    { header: 'Date', field: 'date' },
+    { header: 'Website', field: 'website' },
+    { header: 'Company', field: 'company' },
+    { header: 'Email', field: 'email' },
     {
       header: 'Option',
       field: 'option',
@@ -73,7 +73,7 @@ export class TablesKitchenSinkComponent implements OnInit {
     private kitchenSrv: TablesKitchenSinkService,
     private dataSrv: TablesDataService,
     private cdr: ChangeDetectorRef,
-    public dialog: MtxDialog
+    public dialog: MtxDialog,
   ) {
   }
 
@@ -85,7 +85,7 @@ export class TablesKitchenSinkComponent implements OnInit {
   edit(value: any) {
     const dialogRef = this.dialog.originalOpen(TablesKitchenSinkEditComponent, {
       width: '600px',
-      data: {record: value},
+      data: { record: value },
     });
 
     dialogRef.afterClosed().subscribe(result => {

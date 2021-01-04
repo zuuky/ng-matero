@@ -56,6 +56,7 @@ export class DefaultInterceptor implements HttpInterceptor {
 
   private handleError(errEvent: HttpErrorResponse) {
     const error = errEvent.error;
+    let errorMsg = error.toString();
     if (errEvent.status === 401) {
       LocalStorageService.remove(ModelConsService.TOKEN_KEY);
       this.goTo(ModelConsService.LOGIN_URL);
@@ -64,11 +65,14 @@ export class DefaultInterceptor implements HttpInterceptor {
     } else if (errEvent.status === 500) {
       this.goTo(ModelConsService.ERROR_500);
     } else {
+      console.error('error', error);
       if (error instanceof HttpErrorResponse) {
-        console.error('error', error);
-        this.toastr.error(error.error.msg || `${error.status} ${error.statusText}`);
+        errorMsg = error.error.msg || `${error.status} ${error.statusText}`;
+      } else {
+        errorMsg = `${error.code} ${error.message}`;
       }
+      this.toastr.error(errorMsg);
     }
-    return throwError(error);
+    return throwError(errorMsg);
   }
 }

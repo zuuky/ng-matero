@@ -48,8 +48,8 @@ export class HttpService {
         this._isLoading.next(false);
       },
       (error: any) => {
-        this.dialog.alert(error);
         this._isLoading.next(false);
+        this.dialog.alert(error);
       },
       () => {
         this._isLoading.next(false);
